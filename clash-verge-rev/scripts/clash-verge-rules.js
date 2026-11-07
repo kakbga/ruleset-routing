@@ -12,7 +12,7 @@ function main(config) {
     'enhanced-mode': 'fake-ip', 'fake-ip-range': '198.18.0.1/16',
     "fake-ip-filter": ["*.lan", "*.local", "localhost", "+.msftconnecttest.com", "+.msftncsi.com"],
     'default-nameserver': ['223.5.5.5', '223.6.6.6'],
-    'nameserver': ['https://1.1.1.1/dns-query', 'https://dns.google/dns-query'],
+    'nameserver': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
     'nameserver-policy': {
       'geosite:cn': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
       'geosite:private': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
