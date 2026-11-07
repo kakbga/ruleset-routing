@@ -12,7 +12,7 @@
      默认为内置极光渐变，离线可用。
      换成网络图片：--lg-wallpaper: url("https://example.com/bg.jpg");
      换成本地图片：需转换为 asset.localhost 地址（见 README） */
-  --lg-wallpaper: url("https://cdn.jsdmirror.cn/gh/kakbga/QuantumultX@main/image/d8d89dcjfddfdfs3e25.webp"),
+  --lg-wallpaper: url("https://cdn.jsdmirror.cn/gh/kakbga/ruleset-routing@main/image/d8d89dcjfddfdfs3e25.webp"),
     radial-gradient(90% 70% at 12% 16%, rgba(94, 60, 153, 0.5) 0%, rgba(94, 60, 153, 0) 62%),
     radial-gradient(110% 80% at 82% 8%, rgba(43, 91, 168, 0.55) 0%, rgba(43, 91, 168, 0) 60%),
     radial-gradient(90% 70% at 12% 16%, rgba(94, 60, 153, 0.5) 0%, rgba(94, 60, 153, 0) 62%),
