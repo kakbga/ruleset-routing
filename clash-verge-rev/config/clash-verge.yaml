@@ -1,0 +1,281 @@
+# Clash Verge / Mihomo 配置来源于blackmatrix7规则 需要替换节点路径或者订阅链接 
+mixed-port: 7890
+allow-lan: false
+bind-address: "*"
+ipv6: false
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+secret: ""
+dns:
+  enable: true
+  ipv6: false
+  listen: 127.0.0.1:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "localhost"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  nameserver: ["https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"]
+proxy-providers:
+  airport:
+    type: file
+    path: ./proxies/airport.yaml # 替换为你的节点路径
+    health-check:
+      enable: true
+      interval: 600
+      url: https://www.gstatic.com/generate_204
+#  airport:
+#    type: http
+#    url: "YOUR_SUBSCRIPTION_URL" # 替换为你的订阅链接 
+#    interval: 43200
+#    path: ./proxies/airport.yaml
+#    health-check:
+#      enable: true
+#      interval: 600
+#      url: "https://www.gstatic.com/generate_204"
+proxy-groups:
+  - name: PROXY
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+    include-all: true
+    exclude-type: direct
+  - name: 全球加速
+    type: select
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: 苹果服务
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: "ChatGPT"
+    type: select
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png"
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: 港台番剧
+    type: select
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/StreamingSE.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: 国际媒体
+    type: select
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY]
+  - name: 电报代理
+    type: select
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: 黑白名单
+    type: select
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png
+    proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, PROXY, DIRECT]
+  - name: "香港节点"
+    type: url-test
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)港|HK|Hong"
+    empty-fallback: DIRECT
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+  - name: "台湾节点"
+    type: url-test
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)台|TW|Taiwan"
+    empty-fallback: DIRECT
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+  - name: "日本节点"
+    type: url-test
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)日|阪|JP|Japan"
+    empty-fallback: DIRECT
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+  - name: "狮城节点"
+    type: url-test
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)新|狮|獅|SG|Singapore"
+    empty-fallback: DIRECT
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+  - name: "美国节点"
+    type: url-test
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
+    include-all: true
+    exclude-type: direct
+    filter: "(?i)美|US|States|American"
+    empty-fallback: DIRECT
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+  - name: 广告拦截
+    type: select
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png"
+    proxies: [REJECT, DIRECT]
+  - name: 隐私保护
+    type: select
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png"
+    proxies: [REJECT, DIRECT]
+
+rule-providers:
+  Lan:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.list
+    path: ./ruleset/Direct.list
+    interval: 86400
+  Direct:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list
+    path: ./ruleset/Direct.list
+    interval: 86400
+  Advertising:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.list
+    path: ./ruleset/Advertising.list
+    interval: 86400
+  Privacy:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy.list
+    path: ./ruleset/Privacy.list
+    interval: 86400
+  OpenAI:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list
+    path: ./ruleset/OpenAI.list
+    interval: 86400
+  Claude:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.list
+    path: ./ruleset/Claude.list
+    interval: 86400
+  Gemini:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list
+    path: ./ruleset/Gemini.list
+    interval: 86400
+  TikTok:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.list
+    path: ./ruleset/TikTok.list
+    interval: 86400
+  Google:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list
+    path: ./ruleset/Google.list
+    interval: 86400
+  SteamCN:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.list
+    path: ./ruleset/SteamCN.list
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list
+    path: ./ruleset/Telegram.list
+    interval: 86400
+  GlobalMedia:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia.list
+    path: ./ruleset/GlobalMedia.list
+    interval: 86400
+  BiliBili:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.list
+    path: ./ruleset/BiliBili.list
+    interval: 86400
+  Proxy:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy.list
+    path: ./ruleset/Proxy.list
+    interval: 86400
+  Apple:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list
+    path: ./ruleset/Apple.list
+    interval: 86400
+  China:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.list
+    path: ./ruleset/China.list
+    interval: 86400
+  WeChat:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.list
+    path: ./ruleset/WeChat.list
+    interval: 86400
+rules:
+  - RULE-SET,Lan,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - RULE-SET,Advertising,广告拦截
+  - RULE-SET,Privacy,隐私保护
+  - RULE-SET,OpenAI,ChatGPT
+  - RULE-SET,Claude,日本节点
+  - RULE-SET,Gemini,日本节点
+  - RULE-SET,TikTok,日本节点
+  - RULE-SET,SteamCN,DIRECT
+  - RULE-SET,Telegram,电报代理
+  - RULE-SET,GlobalMedia,国际媒体
+  - RULE-SET,BiliBili,港台番剧
+  - RULE-SET,Apple,苹果服务
+  - RULE-SET,WeChat,DIRECT
+  - RULE-SET,Google,PROXY
+  - RULE-SET,China,DIRECT
+  - RULE-SET,Proxy,全球加速
+  - GEOSITE,CN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,黑白名单
+
