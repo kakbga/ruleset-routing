@@ -8,12 +8,13 @@
 .
 ├── clash-verge-rev/
 │   ├── config/
-│   │   └── clash-verge.yaml          # Mihomo 主配置
+│   │   └── clash-verge.yaml           # Mihomo 主配置
 │   ├── ruleset/
-│   │   ├── AI.yaml                   # AI 域名规则集（Mihomo YAML）
-│   │   └── applications.yaml         # 应用进程规则集（Mihomo YAML）
+│   │   ├── AI.yaml                    # AI 域名规则集（Mihomo YAML）
+│   │   └── applications.yaml          # 应用进程规则集（Mihomo YAML）
 │   ├── scripts/
-│   │   └── clash-latest.js            # Mihomo 配置脚本
+│   │   └── clash-verge-rules.js       # Clash Verge Rev 的全局扩展脚本1
+│   │   └── clash-verge-extend.js      # Clash Verge Rev 的全局扩展脚本2
 │   └── theme/
 │       ├── thematic.css               # Clash Verge Rev 主题样式1
 │       └── theme.css                  # Clash Verge Rev 主题样式2
@@ -21,10 +22,10 @@
 ├── image/                             # 配图资源 Clash Verge Rev 主题背景
 └── quantumultx/
     ├── config/
-    │   └── Orz-QuantumultX.conf      # Quantumult X 主配置
+    │   └── Orz-QuantumultX.conf       # Quantumult X 主配置
     └── ruleset/
-        ├── AI.list                   # Quantumult X AI 规则
-        └── applications.list         # Quantumult X 应用规则
+        ├── AI.list                    # Quantumult X AI 规则
+        └── applications.list          # Quantumult X 应用规则
 ```
 
 ## Clash Verge Rev / Mihomo
