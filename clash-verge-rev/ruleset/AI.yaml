@@ -1,4 +1,3 @@
-# 合并 AI 规则集（已去重）
 payload:
   # Apple Intelligence
   - DOMAIN-SUFFIX,smoot.apple.com
