@@ -8,16 +8,17 @@
 .
 ├── clash-verge-rev/
 │   ├── config/
-│   │   └── clash-verge.yaml           # Mihomo 主配置
+│   │   ├── clash-verge.yaml           # Mihomo 主配置
+│   │   └── clash-verge-local.yaml     # Clash Verge Rev 本地订阅示例
 │   ├── ruleset/
 │   │   ├── AI.yaml                    # AI 域名规则集（Mihomo YAML）
 │   │   └── applications.yaml          # 应用进程规则集（Mihomo YAML）
 │   ├── scripts/
-│   │   └── clash-verge-rules.js       # Clash Verge Rev 的全局扩展脚本1
+│   │   ├── clash-verge-rules.js       # Clash Verge Rev 的全局扩展脚本1
 │   │   └── clash-verge-extend.js      # Clash Verge Rev 的全局扩展脚本2
 │   └── theme/
 │       ├── thematic.css               # Clash Verge Rev 主题样式1
-│       └── theme.css                  # Clash Verge Rev 主题样式2
+│       ├── theme.css                  # Clash Verge Rev 主题样式2
 │       └── theme-colors..txt          # Clash Verge Rev 主题的颜色配置
 ├── image/                             # 配图资源 Clash Verge Rev 主题背景
 └── quantumultx/
