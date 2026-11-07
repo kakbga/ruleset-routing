@@ -15,9 +15,10 @@
 │   ├── scripts/
 │   │   └── clash-latest.js            # Mihomo 配置脚本
 │   └── theme/
-│       ├── thematic.css
-│       └── theme.css                  # Clash Verge Rev 主题样式
-├── image/                             # 配图资源
+│       ├── thematic.css               # Clash Verge Rev 主题样式1
+│       └── theme.css                  # Clash Verge Rev 主题样式2
+│       └── theme-colors..txt          # Clash Verge Rev 主题的颜色配置
+├── image/                             # 配图资源 Clash Verge Rev 主题背景
 └── quantumultx/
     ├── config/
     │   └── Orz-QuantumultX.conf      # Quantumult X 主配置
