@@ -81,14 +81,14 @@ function main(config) {
     applications: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/kakbga/QuantumultX/refs/heads/main/clash-verge-rev/applications.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/refs/heads/main/clash-verge-rev/ruleset/applications.yaml',
       path: 'ruleset/applications.yaml',
       interval: 86400
     },
     AI: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/kakbga/QuantumultX/refs/heads/main/clash-verge-rev/AI.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/refs/heads/main/clash-verge-rev/ruleset/AI.yaml',
       path: 'ruleset/AI.yaml',
       interval: 86400
     },
