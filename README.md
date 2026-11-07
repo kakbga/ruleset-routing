@@ -15,7 +15,7 @@
 │   ├── theme/                       # Clash Verge Rev CSS 主题
 │   └── image/                       # 主题配图
 └── quantumultx/
-    └── Orz-QuantumultX.conf         # Quantumult X 配置
+    └── QuantumultX.conf         # Quantumult X 配置
 ```
 
 ## Clash Verge Rev / Mihomo
@@ -45,13 +45,13 @@
 
 ## Quantumult X
 
-配置文件：[`quantumultx/Orz-QuantumultX.conf`](quantumultx/Orz-QuantumultX.conf)
+配置文件：[`quantumultx/QuantumultX.conf`](quantumultx/QuantumultX.conf)
 
 配置包含 DNS、策略组、远程分流规则、重写资源、脚本任务和本地规则。策略组按地区和用途划分；远程过滤规则来自 RuleGo 等上游项目。
 
 ### 使用
 
-1. 在 Quantumult X 中导入 `Orz-QuantumultX.conf`。
+1. 在 Quantumult X 中导入 `QuantumultX.conf`。
 2. 添加或配置自己的服务器节点，并确认策略组引用的节点名称与实际节点相符。
 3. 检查远程规则、重写资源和脚本任务是否按需启用。
 4. 根据自己的网络环境调整 DNS、MITM 主机名及其他本地选项。
