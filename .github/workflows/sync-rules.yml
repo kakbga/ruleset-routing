@@ -22,7 +22,7 @@ jobs:
         run: python scripts/convert.py
       - name: Commit changes
         run: |
-          git add clash-verge-rev/ruleset/ quantumultx/ruleset/
+          git add scripts/.managed-rules.json clash-verge-rev/ruleset/ quantumultx/ruleset/
           git diff --cached --quiet && exit 0
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
