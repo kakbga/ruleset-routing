@@ -5,7 +5,7 @@
 ## 目录结构
 
 ```text
-.
+
 ├── clash-verge-rev/
 │   ├── config/
 │   │   ├── clash-verge.yaml              # Mihomo 主配置
@@ -13,7 +13,7 @@
 │   ├── ruleset/
 │   │   ├── AI.yaml                       # 整理 AI 规则合集
 │   │   ├── applications.yaml             # 应用进程规则（Loyalsoldier）
-│   │   └── Blackmatrix7 规则集            # 按服务分类的 Mihomo YAML
+│   │   └── Blackmatrix7                  # 按服务分类的 Mihomo YAML
 │   ├── scripts/
 │   │   ├── clash-verge-rules.js
 │   │   └── clash-verge-extend.js
@@ -27,7 +27,7 @@
     │   └── Orz-QuantumultX.conf          # Quantumult X 主配置
     └── ruleset/
         ├── AI.list                       # 整理 AI 规则合集
-        └── Blackmatrix7 规则集           # Quantumult X 规则格式
+        └── Blackmatrix7                  # Quantumult X 规则格式
 ```
 
 ## Clash Verge Rev / Mihomo
@@ -89,3 +89,4 @@ Quantumult X 规则格式与 Mihomo YAML 不同，请使用 `.list` 文件，不
 ## 免责声明
 
 本仓库内容仅供学习和个人使用。使用前请检查配置及第三方规则，并根据自己的网络环境和客户端版本进行调整。
+
