@@ -40,5 +40,6 @@
   ],
   "CustomSource": [
     "clash-verge-rev/ruleset/AI.yaml"
+    "quantumultx/ruleset/AI.list"
   ]
 }
