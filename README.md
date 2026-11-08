@@ -39,7 +39,7 @@
 `clash-verge-rev/ruleset/` 中的规则来源分为：
 
 - **Blackmatrix7**：按服务提供的域名、IP 等规则集，如 `OpenAI.yaml`、`Apple.yaml`、`Telegram.yaml`。
-- **Loyalsoldier**：`applications.yaml` 和 `cncidr.yaml`。
+- **Loyalsoldier**：`applications.yaml` 应用进程规则。
 - **手动维护**：`AI.yaml`，由仓库维护者自行整理。
 
 这些文件使用 Mihomo YAML `payload:` 规则集格式。引用时，`rule-providers` 的 `behavior` 应按实际规则类型设置；混合包含域名、IP 或进程规则的文件使用 `classical`。例如：
