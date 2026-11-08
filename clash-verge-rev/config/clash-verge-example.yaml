@@ -1,0 +1,46 @@
+# 搭配全局扩展脚本使用；脚本负责生成代理组、规则集和分流规则
+
+# Clash Verge Rev 本地订阅示例
+
+  proxy-providers:
+    airport1:
+      url: "https://your-airport1-subscription-url"
+    airport2:
+      url: "https://your-airport2-subscription-url"
+
+# Clash Verge Rev 本地节点示例
+
+proxies:
+  - name: "示例 VMess 节点"
+    type: vmess
+    server: example.com
+    port: 443
+    uuid: 00000000-0000-0000-0000-000000000000
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    servername: example.com
+    network: ws
+    ws-opts:
+      path: /your-path
+      headers:
+        Host: example.com
+
+  - name: "示例 VLESS 节点"
+    type: vless
+    server: example.com
+    port: 443
+    uuid: 00000000-0000-0000-0000-000000000000
+    encryption: ""
+    udp: true
+    tls: true
+    servername: example.com
+    client-fingerprint: chrome
+    alpn:
+      - http/1.1
+    network: ws
+    ws-opts:
+      path: /your-path
+      headers:
+        Host: example.com
