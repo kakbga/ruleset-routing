@@ -36,8 +36,7 @@
     "quantumultx/ruleset/WeChat.list"
   ],
   "Loyalsoldier": [
-    "clash-verge-rev/ruleset/applications.yaml",
-    "clash-verge-rev/ruleset/cncidr.yaml"
+    "clash-verge-rev/ruleset/applications.yaml"
   ],
   "CustomSource": [
     "clash-verge-rev/ruleset/AI.yaml"
