@@ -11,7 +11,7 @@ BLACKMATRIX7_BASE = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_scr
 BLACKMATRIX7_NAMES = ['Lan', 'Direct', 'Advertising', 'Privacy', 'OpenAI', 'Claude', 'Gemini', 'TikTok', 'Google', 'SteamCN', 'Telegram', 'GlobalMedia', 'BiliBili', 'Proxy', 'Apple', 'China', 'WeChat',]
 # Loyalsoldier text rules. Each name produces {name}.yaml in the Clash ruleset folder.
 LOYALSOLDIER_BASE = 'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/{name}.txt'
-LOYALSOLDIER_NAMES = ['applications','cncidr',]
+LOYALSOLDIER_NAMES = ['applications',]
 
 
 def fetch_url(url):
