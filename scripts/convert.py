@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 NAMES = [
     'Lan', 'Direct', 'Advertising', 'Privacy', 'OpenAI', 'Claude', 'Gemini',
     'TikTok', 'Google', 'SteamCN', 'Telegram', 'GlobalMedia', 'BiliBili',
-    'Proxy', 'Apple', 'China', 'WeChat',
+    'Proxy', 'Apple', 'China', 
 ]
 PRESERVED_NAMES = {'AI', 'applications'}
 MANIFEST = ROOT / 'scripts/.managed-rules.json'
