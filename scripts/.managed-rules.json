@@ -1,19 +1,45 @@
-[
-  "Lan",
-  "Direct",
-  "Advertising",
-  "Privacy",
-  "OpenAI",
-  "Claude",
-  "Gemini",
-  "TikTok",
-  "Google",
-  "SteamCN",
-  "Telegram",
-  "GlobalMedia",
-  "BiliBili",
-  "Proxy",
-  "Apple",
-  "China",
-  "WeChat"
-]
+{
+  "Blackmatrix7": [
+    "clash-verge-rev/ruleset/Lan.yaml",
+    "quantumultx/ruleset/Lan.list",
+    "clash-verge-rev/ruleset/Direct.yaml",
+    "quantumultx/ruleset/Direct.list",
+    "clash-verge-rev/ruleset/Advertising.yaml",
+    "quantumultx/ruleset/Advertising.list",
+    "clash-verge-rev/ruleset/Privacy.yaml",
+    "quantumultx/ruleset/Privacy.list",
+    "clash-verge-rev/ruleset/OpenAI.yaml",
+    "quantumultx/ruleset/OpenAI.list",
+    "clash-verge-rev/ruleset/Claude.yaml",
+    "quantumultx/ruleset/Claude.list",
+    "clash-verge-rev/ruleset/Gemini.yaml",
+    "quantumultx/ruleset/Gemini.list",
+    "clash-verge-rev/ruleset/TikTok.yaml",
+    "quantumultx/ruleset/TikTok.list",
+    "clash-verge-rev/ruleset/Google.yaml",
+    "quantumultx/ruleset/Google.list",
+    "clash-verge-rev/ruleset/SteamCN.yaml",
+    "quantumultx/ruleset/SteamCN.list",
+    "clash-verge-rev/ruleset/Telegram.yaml",
+    "quantumultx/ruleset/Telegram.list",
+    "clash-verge-rev/ruleset/GlobalMedia.yaml",
+    "quantumultx/ruleset/GlobalMedia.list",
+    "clash-verge-rev/ruleset/BiliBili.yaml",
+    "quantumultx/ruleset/BiliBili.list",
+    "clash-verge-rev/ruleset/Proxy.yaml",
+    "quantumultx/ruleset/Proxy.list",
+    "clash-verge-rev/ruleset/Apple.yaml",
+    "quantumultx/ruleset/Apple.list",
+    "clash-verge-rev/ruleset/China.yaml",
+    "quantumultx/ruleset/China.list",
+    "clash-verge-rev/ruleset/WeChat.yaml",
+    "quantumultx/ruleset/WeChat.list"
+  ],
+  "Loyalsoldier": [
+    "clash-verge-rev/ruleset/applications.yaml",
+    "clash-verge-rev/ruleset/cncidr.yaml"
+  ],
+  "CustomSource": [
+    "clash-verge-rev/ruleset/AI.yaml"
+  ]
+}
