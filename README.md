@@ -15,11 +15,11 @@
 │   │   ├── applications.yaml             # 应用进程规则（Loyalsoldier）
 │   │   └── Blackmatrix7                  # 按服务分类的 Mihomo YAML
 │   ├── scripts/
-│   │   ├── clash-verge-rules.js
-│   │   └── clash-verge-extend.js
+│   │   ├── clash-verge-rules.js          # Clash Verge Rev 全局扩展脚本1
+│   │   └── clash-verge-extend.js         # Clash Verge Rev 全局扩展脚本2
 │   └── theme/
 │       ├── thematic.css                  # Clash Verge Rev 主题样式1
-│       ├── theme.css                     # Clash Verge Rev 主题样式1
+│       ├── theme.css                     # Clash Verge Rev 主题样式2
 │       └── theme-colors..txt             # Clash Verge Rev 主题的颜色配置
 ├── image/                                # Clash Verge Rev 主题配图
 └── quantumultx/
