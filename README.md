@@ -9,7 +9,7 @@
 ├── clash-verge-rev/
 │   ├── config/
 │   │   ├── clash-verge.yaml           # Clash Verge Rev 本地订阅示例（可单独使用）
-│   │   └── clash-verge-local.yaml     # Clash Verge Rev 本地订阅示例（搭配全局扩展脚本使用）
+│   │   └── clash-verge-example.yaml     # Clash Verge Rev 本地订阅示例（搭配全局扩展脚本使用）
 │   ├── ruleset/
 │   │   ├── AI.yaml                    # AI 域名规则集（Mihomo YAML）
 │   │   └── applications.yaml          # 应用进程规则集（Mihomo YAML）
