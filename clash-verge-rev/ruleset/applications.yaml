@@ -1,5 +1,4 @@
 payload:
-  # 代理与隧道工具
   - PROCESS-NAME,frpc
   - PROCESS-NAME,frpc.exe
   - PROCESS-NAME,frps
@@ -32,8 +31,6 @@ payload:
   - PROCESS-NAME,tailscale.exe
   - PROCESS-NAME,tailscaled
   - PROCESS-NAME,tailscaled.exe
-  - PROCESS-NAME,Tailscale
-  - PROCESS-NAME,Tailscale.exe
   - PROCESS-NAME,io.tailscale.ipn.macsys.network-extension
   - PROCESS-NAME,io.tailscale.ipn.macos.network-extension
   - PROCESS-NAME,tinyvpn
@@ -64,7 +61,6 @@ payload:
   - PROCESS-NAME,Surge%202
   - PROCESS-NAME,Surge%203
   - PROCESS-NAME,Surge%204
-  # 下载工具
   - PROCESS-NAME,BitComet
   - PROCESS-NAME,BitComet.exe
   - PROCESS-NAME,BitComet_x64.exe
