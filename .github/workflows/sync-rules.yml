@@ -1,4 +1,4 @@
-name: Sync Blackmatrix7 rules
+name: Sync and Convert Rules
 on:
   schedule:
     - cron: '23 2 * * *'
@@ -26,6 +26,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git commit -m "chore: sync Blackmatrix7 rules"
+          git commit -m "chore: sync and convert rules"
           git push
+
 
