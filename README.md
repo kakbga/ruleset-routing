@@ -1,6 +1,6 @@
 # ruleset-routing
 
-个人网络分流配置与规则集，包含 Clash Verge Rev（Mihomo）和 Quantumult X 配置，以及 Clash Verge Rev 的扩展脚本、主题样式和配图。
+用于 GitHub Actions 自动构建 Mihomo网络分流配置与规则集，包含 Clash Verge Rev（Mihomo）和 Quantumult X 配置，以及 Clash Verge Rev 的扩展脚本、主题样式和配图。
 
 ## 目录结构
 
