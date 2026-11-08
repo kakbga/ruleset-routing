@@ -1,6 +1,7 @@
 from pathlib import Path
 from urllib.request import Request, urlopen
 import re
+import json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,13 +11,8 @@ NAMES = [
     'TikTok', 'Google', 'SteamCN', 'Telegram', 'GlobalMedia', 'BiliBili',
     'Proxy', 'Apple', 'China', 'WeChat',
 ]
-# Only files belonging to these known upstream sets may be cleaned up.
-MANAGED_NAMES = {
-    'Lan', 'Direct', 'Advertising', 'Privacy', 'OpenAI', 'Claude', 'Gemini',
-    'TikTok', 'Google', 'SteamCN', 'Telegram', 'GlobalMedia', 'BiliBili',
-    'Proxy', 'Apple', 'China', 'WeChat',
-}
 PRESERVED_NAMES = {'AI', 'applications'}
+MANIFEST = ROOT / 'scripts/.managed-rules.json'
 BASE = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/{client}/{name}/{name}.list'
 
 
@@ -47,6 +43,10 @@ def main():
     qx_dir.mkdir(parents=True, exist_ok=True)
 
     # Download and validate all selected sources before deleting or replacing files.
+    previous_names = set()
+    if MANIFEST.exists():
+        previous_names = set(json.loads(MANIFEST.read_text(encoding='utf-8')))
+
     generated = {}
     for name in NAMES:
         clash = clean(fetch('Clash', name))
@@ -61,13 +61,17 @@ def main():
         directory = clash_dir if extension == 'yaml' else qx_dir
         (directory / f'{name}.{extension}').write_text(content, encoding='utf-8')
 
-    # Clean only previously managed names omitted from NAMES. Preserve user files.
-    removed = MANAGED_NAMES - set(NAMES)
+    # Clean only files recorded by the previous successful run. Preserve user files.
+    removed = previous_names - set(NAMES)
     for name in sorted(removed - PRESERVED_NAMES):
+        if not re.fullmatch(r'[A-Za-z0-9_-]+', name):
+            continue
         for path in (clash_dir / f'{name}.yaml', qx_dir / f'{name}.list'):
             if path.is_file():
                 path.unlink()
                 print(f'Removed obsolete generated file: {path.relative_to(ROOT)}')
+
+    MANIFEST.write_text(json.dumps(sorted(set(NAMES)), indent=2) + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':
