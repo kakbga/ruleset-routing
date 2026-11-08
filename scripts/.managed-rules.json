@@ -40,6 +40,6 @@
   ],
   "CustomSource": [
     "clash-verge-rev/ruleset/AI.yaml",
-    "quantumultx/ruleset/WeChat.list"
+    "quantumultx/ruleset/AI.list"
   ]
 }
