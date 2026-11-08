@@ -22,11 +22,12 @@ jobs:
         run: python scripts/convert.py
       - name: Commit changes
         run: |
-          git add clash-verge-rev/ruleset/*.yaml quantumultx/ruleset/*.list
+          git add clash-verge-rev/ruleset/ quantumultx/ruleset/
           git diff --cached --quiet && exit 0
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git commit -m "chore: sync and convert rules"
           git push
+
 
 
