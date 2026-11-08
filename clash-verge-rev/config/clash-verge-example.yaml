@@ -2,11 +2,11 @@
 
 # Clash Verge Rev 本地订阅示例
 
-  proxy-providers:
-    airport1:
-      url: "https://your-airport1-subscription-url"
-    airport2:
-      url: "https://your-airport2-subscription-url"
+proxy-providers:
+  airport1:
+    url: "https://your-airport1-subscription-url"
+  airport2:
+    url: "https://your-airport2-subscription-url"
 
 # Clash Verge Rev 本地节点示例
 
