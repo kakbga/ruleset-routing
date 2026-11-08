@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 NAMES = [
     'Lan', 'Direct', 'Advertising', 'Privacy', 'OpenAI', 'Claude', 'Gemini',
     'TikTok', 'Google', 'SteamCN', 'Telegram', 'GlobalMedia', 'BiliBili',
-    'Proxy', 'Apple', 'China', 
+    'Proxy', 'Apple', 'China', 'WeChat',
 ]
 PRESERVED_NAMES = {'AI', 'applications'}
 MANIFEST = ROOT / 'scripts/.managed-rules.json'
@@ -71,8 +71,9 @@ def main():
                 path.unlink()
                 print(f'Removed obsolete generated file: {path.relative_to(ROOT)}')
 
-    MANIFEST.write_text(json.dumps(sorted(set(NAMES)), indent=2) + '\n', encoding='utf-8')
+    MANIFEST.write_text(json.dumps(NAMES, indent=2) + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':
     main()
+
