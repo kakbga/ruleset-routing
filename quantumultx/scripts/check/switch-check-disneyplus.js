@@ -37,7 +37,7 @@ const STATUS_TIMEOUT = -1
 // 检测异常
 const STATUS_ERROR = -2
 
-const link = { "media-url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/img/southpark/7.png" } 
+const link = { "media-url": "https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260314.png" } 
 
 var cronsign = $environment.executeType == 0 || $environment.executeType == "0" || $environment.executeType == "-1"? "Y" : "N"
 var policy = $environment.executeType == 0 || $environment.executeType == "0" || $environment.executeType == "-1"? GetPolicy($environment.sourcePath) : $environment.params
