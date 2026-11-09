@@ -37,9 +37,5 @@
   ],
   "Loyalsoldier": [
     "clash-verge-rev/ruleset/applications.yaml"
-  ],
-  "CustomSource": [
-    "clash-verge-rev/ruleset/AI.yaml",
-    "quantumultx/ruleset/AI.list"
   ]
 }
