@@ -81,21 +81,21 @@ function main(config) {
     applications: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/refs/heads/main/clash-verge-rev/ruleset/applications.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/applications.yaml',
       path: 'ruleset/applications.yaml',
       interval: 86400
     },
     AI: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/refs/heads/main/clash-verge-rev/ruleset/AI.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/AI.yaml',
       path: 'ruleset/AI.yaml',
       interval: 86400
     },
     SteamCN: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/SteamCN.yaml',
       path: 'ruleset/SteamCN.yaml',
       interval: 86400
     }
