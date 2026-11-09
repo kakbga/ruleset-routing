@@ -112,8 +112,6 @@ def main():
         path = (ROOT / relative_path).resolve()
         if ROOT.resolve() not in path.parents:
             raise ValueError(f'Unsafe path in managed-rules manifest: {relative_path}')
-        if path.name.lower() in {'ai.yaml'}:
-            continue
         if path.is_file():
             path.unlink()
             print(f'Removed obsolete generated file: {relative_path}')
