@@ -56,10 +56,9 @@ def main():
 
     # Download and validate all selected sources before deleting or replacing files.
     previous_files = []
-    custom_files = []
     if MANIFEST.exists():
         previous_manifest = json.loads(MANIFEST.read_text(encoding='utf-8'))
-        expected_categories = {'Blackmatrix7', 'Loyalsoldier', 'CustomSource'}
+        expected_categories = {'Blackmatrix7', 'Loyalsoldier'}
         if (
             not isinstance(previous_manifest, dict)
             or set(previous_manifest) != expected_categories
@@ -69,7 +68,6 @@ def main():
             )
         ):
             raise ValueError(f'Invalid managed-rules manifest: {MANIFEST}')
-        custom_files = previous_manifest['CustomSource']
         previous_files = [
             path
             for category in ('Blackmatrix7', 'Loyalsoldier')
@@ -99,7 +97,6 @@ def main():
     current_manifest = {
         'Blackmatrix7': [],
         'Loyalsoldier': [],
-        'CustomSource': custom_files,
     }
     for (name, extension), content in generated.items():
         directory = clash_dir if extension == 'yaml' else qx_dir
