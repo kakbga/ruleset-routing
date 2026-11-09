@@ -88,8 +88,8 @@ function main(config) {
     AI: {
       type: 'http',
       behavior: 'classical',
-      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/AI.yaml',
-      path: 'ruleset/AI.yaml',
+      url: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/rules/AI.yaml',
+      path: 'rules/AI.yaml',
       interval: 86400
     },
     SteamCN: {
