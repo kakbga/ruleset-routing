@@ -31,7 +31,7 @@ const BASE_URL_Discovery = "https://us1-prod-direct.discoveryplus.com/users/me"
 const BASE_URL_GPT = 'https://chat.openai.com/'
 const Region_URL_GPT = 'https://chat.openai.com/cdn-cgi/trace'
 
-const link = { "media-url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/img/southpark/7.png" } 
+const link = { "media-url": "https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260314.png" } 
 const policy_name = "Netflix" //填入你的 netflix 策略组名
 
 const arrow = " ➟ "
