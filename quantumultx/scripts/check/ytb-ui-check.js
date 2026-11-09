@@ -16,7 +16,7 @@ event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/
 const BASE_URL = 'https://www.youtube.com/premium'
 
 const FILM_ID = 81215567
-const link = { "media-url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/img/southpark/7.png" } 
+const link = { "media-url": "https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260314.png" } 
 
 const arrow = "➟"
 var output = ""
