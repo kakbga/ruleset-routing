@@ -1,4 +1,4 @@
-# 本地配置（包含真实订阅链接）
+# 本地配置
 clash-verge-rev/config/clash-verge-local.yaml
 *.local.yaml
 
