@@ -1,3 +1,7 @@
+#!name = 红果短剧广告拦截
+#!desc = 拦截红果短剧及字节系相关广告请求
+#!system = iOS,iPadOS
+
 #红果核心广告拦截
 HOST-SUFFIX, hongguoapp.com, REJECT
 HOST-SUFFIX, hongguosdk.com, REJECT
