@@ -52,8 +52,8 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/AI.yaml
-    path: ./ruleset/AI.yaml
+    url: https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/ruleset/OpenAI.yaml
+    path: ./ruleset/OpenAI.yaml
     interval: 86400
 ```
 
