@@ -1,13 +1,5 @@
-# 本地配置
 clash-verge-rev/config/clash-verge-local.yaml
-*.local.yaml
-
-# 代理缓存
 proxies/
-
-# macOS
 .DS_Store
-
-# IDE
 .idea/
 .vscode/
