@@ -1,0 +1,14 @@
+#红果核心广告拦截
+HOST-SUFFIX, hongguoapp.com, REJECT
+HOST-SUFFIX, hongguosdk.com, REJECT
+HOST-KEYWORD, hongguo.ad, REJECT
+#穿山甲与广告联盟 SDK
+HOST-SUFFIX, pangolin-sdk-toutiao.com, REJECT
+HOST-SUFFIX, pglstatp-toutiao.com, REJECT
+HOST-SUFFIX, ad.pangle.cn, REJECT
+HOST-SUFFIX, ad.pangolin.cn, REJECT
+HOST-KEYWORD, ad-union-sdk, REJECT
+#字节系广告与配置兜底
+HOST-KEYWORD, be-pack, REJECT
+HOST-SUFFIX, zijieapi.com, REJECT
+HOST-KEYWORD, tnc.snssdk, REJECT
