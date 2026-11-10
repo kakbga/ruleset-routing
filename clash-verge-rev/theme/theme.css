@@ -12,7 +12,7 @@
      默认为内置极光渐变，离线可用。
      换成网络图片：--lg-wallpaper: url("https://example.com/bg.jpg");
      换成本地图片：需转换为 asset.localhost 地址（见 README） */
-  --lg-wallpaper: /*--lg-wallpaper: url("https://cdn.jsdmirror.cn/gh/kakbga/ruleset-routing@main/image/d8d89dcjfddfdfs3e25.webp"),*/
+  --lg-wallpaper: /*--lg-wallpaper: url("https://cdn.jsdmirror.cn/gh/kakbga/ruleset-routing@main/clash-verge-rev/image/d8d89dcjfddfdfs3e25.webp"),*/
     radial-gradient(110% 80% at 82% 8%, rgba(139, 92, 246, 0.55) 0%, rgba(139, 92, 246, 0) 60%),
     radial-gradient(90% 70% at 12% 16%, rgba(192, 132, 252, 0.42) 0%, rgba(192, 132, 252, 0) 62%),
     radial-gradient(120% 90% at 55% 105%, rgba(99, 102, 241, 0.38) 0%, rgba(99, 102, 241, 0) 60%),
