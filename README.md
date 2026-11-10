@@ -14,7 +14,7 @@
 │   │   ├── applications.yaml             # 应用进程规则（Loyalsoldier）
 │   │   └── Blackmatrix7                  # Blackmatrix7分类 Mihomo YAML
 │   ├── rules/
-│   │   └── AI.yaml                       # 整理 AI 规则合集
+│   │   └── AI.yaml                       # 整理AI规则合集
 │   ├── scripts/
 │   │   ├── clash-verge-rules.js          # Clash Verge Rev 全局扩展脚本1
 │   │   └── clash-verge-extend.js         # Clash Verge Rev 全局扩展脚本2
@@ -29,7 +29,7 @@
 │    ├── ruleset/
 │    │   └── Blackmatrix7                 # Blackmatrix7分类 规则 list
 │    └── rules/  
-│        └── AI.list                      # 整理 AI 规则合集      
+│        └── AI.list                      # 整理AI规则合集      
 ```
 
 ## Clash Verge Rev / Mihomo
