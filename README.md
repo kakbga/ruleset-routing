@@ -12,7 +12,7 @@
 │   │   └── clash-verge-example.yaml      # 本地订阅示例
 │   ├── ruleset/
 │   │   ├── applications.yaml             # 应用进程规则（Loyalsoldier）
-│   │   └── Blackmatrix7                  # 按服务分类的 Mihomo YAML
+│   │   └── Blackmatrix7                  # Blackmatrix7分类 Mihomo YAML
 │   ├── rules/
 │   │   └── AI.yaml                       # 整理 AI 规则合集
 │   ├── scripts/
@@ -27,7 +27,7 @@
 │    ├── config/
 │    │   └── Orz-QuantumultX.conf         # Quantumult X 主配置
 │    ├── ruleset/
-│    │   └── Blackmatrix7                 # Quantumult X 规则格式
+│    │   └── Blackmatrix7                 # Blackmatrix7分类 规则 list
 │    └── rules/  
 │        └── AI.list                      # 整理 AI 规则合集      
 ```
