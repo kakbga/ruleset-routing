@@ -18,11 +18,11 @@
 │   ├── scripts/
 │   │   ├── clash-verge-rules.js          # Clash Verge Rev 全局扩展脚本1
 │   │   └── clash-verge-extend.js         # Clash Verge Rev 全局扩展脚本2
-│   └── theme/
-│       ├── thematic.css                  # Clash Verge Rev 主题样式1
-│       ├── theme.css                     # Clash Verge Rev 主题样式2
-│       └── theme-colors..txt             # Clash Verge Rev 主题的颜色配置
-├── image/                                # Clash Verge Rev 主题配图
+│   ├── theme/
+│   │   ├── thematic.css                  # Clash Verge Rev 主题样式1
+│   │   ├── theme.css                     # Clash Verge Rev 主题样式2
+│   │   └── theme-colors..txt             # Clash Verge Rev 主题的颜色配置
+│   └── image/                            # Clash Verge Rev 主题配图
 ├── quantumultx/
 │    ├── config/
 │    │   └── Orz-QuantumultX.conf         # Quantumult X 主配置
@@ -77,7 +77,7 @@ Quantumult X 规则格式与 Mihomo YAML 不同，请使用 `.list` 文件，不
 
 - `clash-verge-rev/scripts/`：Clash Verge Rev 全局扩展脚本。
 - `clash-verge-rev/theme/`：自定义 CSS 与颜色配置。
-- `image/`：主题配图资源。
+- `clash-verge-rev/image/`：主题配图资源。
 
 请在 Clash Verge Rev 对应的脚本和主题设置中使用这些文件。使用远程图片时，请确认链接可访问。
 
