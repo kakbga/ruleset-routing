@@ -23,6 +23,7 @@
 │   │   ├── theme.css                     # Clash Verge Rev 主题样式2
 │   │   └── theme-colors..txt             # Clash Verge Rev 主题的颜色配置
 │   └── image/                            # Clash Verge Rev 主题配图
+│
 ├── quantumultx/
 │    ├── config/
 │    │   └── Orz-QuantumultX.conf         # Quantumult X 主配置
