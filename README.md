@@ -11,9 +11,10 @@
 │   │   ├── clash-verge.yaml              # Mihomo 主配置
 │   │   └── clash-verge-example.yaml      # 本地订阅示例
 │   ├── ruleset/
-│   │   ├── AI.yaml                       # 整理 AI 规则合集
 │   │   ├── applications.yaml             # 应用进程规则（Loyalsoldier）
 │   │   └── Blackmatrix7                  # 按服务分类的 Mihomo YAML
+│   ├── rules/
+│   │   └── AI.yaml                       # 整理 AI 规则合集
 │   ├── scripts/
 │   │   ├── clash-verge-rules.js          # Clash Verge Rev 全局扩展脚本1
 │   │   └── clash-verge-extend.js         # Clash Verge Rev 全局扩展脚本2
@@ -22,12 +23,13 @@
 │       ├── theme.css                     # Clash Verge Rev 主题样式2
 │       └── theme-colors..txt             # Clash Verge Rev 主题的颜色配置
 ├── image/                                # Clash Verge Rev 主题配图
-└── quantumultx/
-    ├── config/
-    │   └── Orz-QuantumultX.conf          # Quantumult X 主配置
-    └── ruleset/
-        ├── AI.list                       # 整理 AI 规则合集
-        └── Blackmatrix7                  # Quantumult X 规则格式
+├── quantumultx/
+│    ├── config/
+│    │   └── Orz-QuantumultX.conf         # Quantumult X 主配置
+│    ├── ruleset/
+│    │   └── Blackmatrix7                 # Quantumult X 规则格式
+│    └── rules/  
+│        └── AI.list                      # 整理 AI 规则合集      
 ```
 
 ## Clash Verge Rev / Mihomo
