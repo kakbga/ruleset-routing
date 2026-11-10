@@ -1,4 +1,5 @@
 clash-verge-rev/config/clash-verge-local.yaml
+clash-verge-rev\scripts/clash-latest.js
 proxies/
 .DS_Store
 .idea/
