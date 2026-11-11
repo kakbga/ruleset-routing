@@ -1264,6 +1264,11 @@ function getIpapiisPrivacy(body) {
 function escapeHTML(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
+// Ōsaka / São 这类带音标的写法去掉附加符号, 免得看着像多了一个短横
+function tidyText(str) {
+  const text = String(str)
+  return typeof text.normalize === 'function' ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text
+}
 // 把 content 里的「键: 值」文本拆成分段
 function parseNetworkInfo(text) {
   const meta = {}
@@ -1287,7 +1292,7 @@ function parseNetworkInfo(text) {
       const matched = line.match(/^([^:：]{1,14})\s*[:：]\s*(.*)$/)
       if (!matched) return
       const key = matched[1].trim()
-      const val = matched[2].trim()
+      const val = tidyText(matched[2].trim())
       const bare = key.replace(/[¹²³]+$/, '')
 
       if (bare === 'SSID') {
