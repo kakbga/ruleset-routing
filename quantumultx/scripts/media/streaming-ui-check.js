@@ -109,7 +109,7 @@ function flagOf(region) {
 // 展示名与顺序
 const SERVICES = ['YouTube', 'Netflix', 'Disney', 'Dazn', 'Paramount', 'Discovery', 'ChatGPT'];
 const SERVICE_NAME = {
-  YouTube: 'YouTube Premium',
+  YouTube: 'YouTube',
   Netflix: 'Netflix',
   Disney: 'Disney+',
   Dazn: 'DAZN',
@@ -170,7 +170,7 @@ function renderReport(nodeLabel) {
     lines.push(icon + ' <b>' + SERVICE_NAME[k] + '</b>：<font color="' + color + '">' + detail + '</font>');
   });
 
-  return '<div style="font-family: -apple-system; font-size: large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
+  return '<div style="font-family: -apple-system; font-size: x-large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
 }
 
 ;(async () => {
