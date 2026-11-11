@@ -1,24 +1,20 @@
-# name = 广告拦截
-# desc = 本列表针对国内 App（抖音/番茄小说/红果短剧/小红书/高德等）的广告、埋点、统计域名
+# Quantumult X 广告拦截 制作 by Q 2026/11/12 更新
+# desc = 本列表针对国内App抖音、番茄小说、红果、小红书、高德等的广告、埋点、统计域名
 # 规则条数: 94
 # system = iOS,iPadOS
 
-#红果核心广告拦截
 HOST-SUFFIX, hongguoapp.com, REJECT
 HOST-SUFFIX, hongguosdk.com, REJECT
 HOST-KEYWORD, hongguo.ad, REJECT
-#穿山甲与广告联盟 SDK
 HOST-SUFFIX, pangolin-sdk-toutiao.com, REJECT
 HOST-SUFFIX, pglstatp-toutiao.com, REJECT
 HOST-SUFFIX, ad.pangle.cn, REJECT
 HOST-SUFFIX, ad.pangolin.cn, REJECT
 HOST-KEYWORD, ad-union-sdk, REJECT
-#字节系广告与配置兜底
 HOST-KEYWORD, be-pack, REJECT
 HOST-SUFFIX, zijieapi.com, REJECT
 HOST-KEYWORD, tnc.snssdk, REJECT
-#新添加 2026.11.12
-# 项目: https://github.com/abclq/home-dns-adblock
+#新添加项目: https://github.com/abclq/home-dns-adblock 
 HOST-SUFFIX, abtest3-misc-hl.zijieapi.com, REJECT
 HOST-SUFFIX, activity-ag.awemeughun.com, REJECT
 HOST-SUFFIX, ad.toutiao.com, REJECT
