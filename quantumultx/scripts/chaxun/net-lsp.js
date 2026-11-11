@@ -221,7 +221,7 @@ let content = ''
       content = `${content}\n执行时间: ${new Date().toTimeString().split(' ')[0]}`
     }
 
-    title = title || '网络信息 𝕏'
+    title = title || '网络信息'
     if (isTile()) {
       await notify('网络信息', '面板', '查询完成')
     } else if (!isPanel()) {
@@ -240,7 +240,7 @@ let content = ''
             .trim()
         )
       } else {
-        await notify('网络信息 𝕏', title, content)
+        await notify('网络信息', title, content)
       }
     }
   }
@@ -251,7 +251,7 @@ let content = ''
     const msg = `${$.lodash_get(e, 'message') || $.lodash_get(e, 'error') || e}`
     title = `❌`
     content = msg
-    await notify('网络信息 𝕏', title, content)
+    await notify('网络信息', title, content)
   })
   .finally(async () => {
     if (isRequest()) {
@@ -282,7 +282,7 @@ let content = ''
       const html = renderNetworkCard(content, proxy_policy)
       // $.log(html)
       $.done({
-        title: '网络信息 𝕏',
+        title: '网络信息',
         htmlMessage: html,
       })
     } else {
