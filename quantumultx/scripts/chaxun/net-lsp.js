@@ -1343,6 +1343,7 @@ function parseNetworkInfo(text) {
 function renderNetworkCard(content, nodeRaw) {
   const GRAY = '#8E8E93'
   const ACCENT = '#4C9AFF'
+  const RULE = '#5A5A5E'
   const { meta, sections } = parseNetworkInfo(content)
 
   let nodeLabel = ''
@@ -1352,72 +1353,50 @@ function renderNetworkCard(content, nodeRaw) {
   }
 
   if (!nodeLabel && !meta.policy && !sections.length) {
-    return `<div style="font-family: -apple-system; font-size: 15px">${escapeHTML(content).replace(/\n/g, '<br/>')}</div>`
+    return `<div style="font-family: -apple-system; font-size: large">${escapeHTML(content).replace(/\n/g, '<br/>')}</div>`
   }
 
-  const row = (label, value) =>
-    `<tr><td width="58" style="padding: 2px 0; vertical-align: top; white-space: nowrap"><font color="${GRAY}" style="font-size: 13px">${escapeHTML(
-      label
-    )}</font></td><td style="padding: 2px 0; vertical-align: top; font-size: 15px; word-break: break-all">${escapeHTML(
-      value
-    )}</td></tr>`
-
-  const rows = []
+  const lines = []
+  const rule = `<font color="${RULE}">────────────</font>`
 
   if (nodeLabel) {
-    rows.push(
-      `<tr><td colspan="2" style="padding: 0 0 10px"><b style="color: ${ACCENT}; font-size: 17px">${escapeHTML(
-        nodeLabel
-      )}</b></td></tr>`
-    )
+    lines.push(`<b style="color: ${ACCENT}">${escapeHTML(nodeLabel)}</b>`)
+    lines.push(rule)
   }
-  rows.push(`<tr><td colspan="2"><div style="border-top: 1px solid #3A3A3C; margin: 0 0 10px"></div></td></tr>`)
-
   if (meta.policy) {
-    rows.push(row('策略', meta.policy))
+    lines.push(`<font color="${GRAY}">策略</font>&nbsp;&nbsp;${escapeHTML(meta.policy)}`)
   }
 
-  let first = true
   sections.forEach(sec => {
-    if (sec.title) {
-      rows.push(
-        `<tr><td colspan="2" style="padding: ${first ? 0 : 12}px 0 6px"><font color="#9A9AA0" style="font-size: 11px; font-weight: 600; letter-spacing: 1px">${escapeHTML(
-          sec.title
-        )}</font></td></tr>`
-      )
-      first = false
-    }
+    if (sec.title) lines.push(`<b style="color: ${GRAY}">${escapeHTML(sec.title)}</b>`)
     sec.rows.forEach(item => {
-      rows.push(row(item.k, item.v))
+      lines.push(`<font color="${GRAY}">${escapeHTML(item.k)}</font>&nbsp;&nbsp;${escapeHTML(item.v)}`)
     })
     if (sec.privacy && sec.privacy.length) {
-      const chips = sec.privacy
-        .map(item => {
-          const hit = /✓|✔|true|yes|是/i.test(item.v)
-          const color = hit ? '#E5484D' : '#5AC36D'
-          return `<span style="display: inline-block; margin: 0 12px 4px 0"><font color="${GRAY}" style="font-size: 13px">${escapeHTML(
-            item.k
-          )}</font> <font color="${color}" style="font-size: 13px">${escapeHTML(item.v)}</font></span>`
-        })
-        .join('')
-      rows.push(`<tr><td colspan="2" style="padding: 0">${chips}</td></tr>`)
+      lines.push(
+        sec.privacy
+          .map(item => {
+            const hit = /✓|✔|true|yes|是/i.test(item.v)
+            const color = hit ? '#E5484D' : '#5AC36D'
+            return `<font color="${GRAY}">${escapeHTML(item.k)}</font> <font color="${color}">${escapeHTML(item.v)}</font>`
+          })
+          .join('&nbsp;&nbsp;&nbsp;')
+      )
     }
   })
 
-  const foot = [meta.ssid && `SSID ${meta.ssid}`, meta.lan && `LAN ${meta.lan}`, meta.time]
-    .filter(i => i)
-    .join(' · ')
+  const foot = [
+    meta.ssid && `SSID ${meta.ssid}`,
+    meta.lan && `LAN ${meta.lan}`,
+    meta.time,
+  ].filter(i => i)
 
-  if (foot) {
-    rows.push(`<tr><td colspan="2"><div style="border-top: 1px solid #3A3A3C; margin: 12px 0 8px"></div></td></tr>`)
-    rows.push(
-      `<tr><td colspan="2"><font color="${GRAY}" style="font-size: 12px">${escapeHTML(foot)}</font></td></tr>`
-    )
+  if (foot.length) {
+    lines.push(rule)
+    foot.forEach(item => lines.push(`<font color="${GRAY}">${escapeHTML(item)}</font>`))
   }
 
-  return `<div style="font-family: -apple-system; font-size: 15px; line-height: 1.45"><table width="100%" cellspacing="0" cellpadding="0">${rows.join(
-    ''
-  )}</table></div>`
+  return `<div style="font-family: -apple-system; font-size: large; line-height: 1.45">${lines.join('<br/>')}</div>`
 }
 // —— 网络信息卡片结束 ——
 function simplifyAddr(addr) {
