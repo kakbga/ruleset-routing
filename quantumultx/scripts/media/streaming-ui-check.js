@@ -147,27 +147,30 @@ function timeout(delay = 5000) {
   });
 }
 
+function escapeHTML(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// 与 net-lsp 一致的线性排版: 不用表格, 标签后面跟全角冒号
 function renderReport(nodeLabel) {
-  let rows = SERVICES.map(k => {
+  const ACCENT = '#4C9AFF';
+  const RULE = '#5A5A5E';
+  let lines = [];
+
+  if (nodeLabel) {
+    lines.push('<b style="color: ' + ACCENT + '">' + escapeHTML(nodeLabel) + '</b>');
+    lines.push('<font color="' + RULE + '">────────────</font>');
+  }
+
+  SERVICES.forEach(k => {
     let it = data[k];
     let color = STATE_COLOR[it.state] || STATE_COLOR.error;
     let icon = STATE_ICON[it.state] || STATE_ICON.error;
     let detail = it.detail || (it.state === 'ok' ? '支持' : '');
-    return '<tr>' +
-      '<td style="padding:4px 0">' + icon + '&nbsp;<b>' + SERVICE_NAME[k] + '</b></td>' +
-      '<td align="right" style="padding:4px 0;color:' + color + '">' + detail + '</td>' +
-      '</tr>';
-  }).join('');
+    lines.push(icon + ' <b>' + SERVICE_NAME[k] + '</b>：<font color="' + color + '">' + detail + '</font>');
+  });
 
-  let rule = '<div style="border-top:1px solid #3A3A3C;margin:10px 0"></div>';
-
-  return '<div style="font-family:-apple-system;font-size:16px;line-height:1.35">' +
-    '<table width="100%" cellspacing="0" cellpadding="0" style="width:100%">' +
-    '<tr><td colspan="2">' + rule + '</td></tr>' +
-    rows +
-    '<tr><td colspan="2">' + rule + '</td></tr>' +
-    '<tr><td colspan="2"><font color="#8E8E93" size="2">节点 · ' + nodeLabel + '</font></td></tr>' +
-    '</table></div>';
+  return '<div style="font-family: -apple-system; font-size: large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
 }
 
 ;(async () => {
