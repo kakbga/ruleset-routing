@@ -1,7 +1,7 @@
-#!name = 红果短剧广告拦截
-#!desc = 拦截红果短剧及字节系相关广告请求
-#!system = iOS,iPadOS
-#项目: https://github.com/abclq/home-dns-adblock
+# name = 广告拦截
+# desc = 本列表针对国内 App（抖音/番茄小说/红果短剧/小红书/高德等）的广告、埋点、统计域名
+# 规则条数: 94
+# system = iOS,iPadOS
 
 #红果核心广告拦截
 HOST-SUFFIX, hongguoapp.com, REJECT
@@ -18,6 +18,7 @@ HOST-KEYWORD, be-pack, REJECT
 HOST-SUFFIX, zijieapi.com, REJECT
 HOST-KEYWORD, tnc.snssdk, REJECT
 #新添加 2026.11.12
+# 项目: https://github.com/abclq/home-dns-adblock
 HOST-SUFFIX, abtest3-misc-hl.zijieapi.com, REJECT
 HOST-SUFFIX, activity-ag.awemeughun.com, REJECT
 HOST-SUFFIX, ad.toutiao.com, REJECT
