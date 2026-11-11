@@ -170,7 +170,7 @@ function renderReport(nodeLabel) {
     lines.push(icon + ' <b>' + SERVICE_NAME[k] + '</b>：<font color="' + color + '">' + detail + '</font>');
   });
 
-  return '<div style="font-family: -apple-system; font-size: x-large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
+  return '<div style="font-family: -apple-system; font-size: large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
 }
 
 ;(async () => {
