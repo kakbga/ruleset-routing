@@ -147,27 +147,26 @@ function timeout(delay = 5000) {
   });
 }
 
+function escapeHTML(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function renderReport(nodeLabel) {
-  let rows = SERVICES.map(k => {
+  // 不用表格: QX 会丢掉 td 上的样式, 列宽会塌掉
+  let lines = SERVICES.map(k => {
     let it = data[k];
     let color = STATE_COLOR[it.state] || STATE_COLOR.error;
     let icon = STATE_ICON[it.state] || STATE_ICON.error;
-    let detail = it.detail || '';
-    return '<tr>' +
-      '<td style="padding:4px 0">' + icon + '&nbsp;<b>' + SERVICE_NAME[k] + '</b></td>' +
-      '<td align="right" style="padding:4px 0;color:' + color + '">' + detail + '</td>' +
-      '</tr>';
-  }).join('');
+    let detail = it.detail ? ' · <font color="' + color + '">' + it.detail + '</font>' : '';
+    return icon + ' <b>' + SERVICE_NAME[k] + '</b>' + detail;
+  });
 
-  let rule = '<div style="border-top:1px solid #3A3A3C;margin:10px 0"></div>';
+  lines.push('<font color="#5A5A5E">────────────</font>');
+  if (nodeLabel) {
+    lines.push('<font color="#8E8E93">节点 · ' + escapeHTML(nodeLabel) + '</font>');
+  }
 
-  return '<div style="font-family:-apple-system;font-size:16px;line-height:1.35">' +
-    '<table width="100%" cellspacing="0" cellpadding="0" style="width:100%">' +
-    '<tr><td colspan="2">' + rule + '</td></tr>' +
-    rows +
-    '<tr><td colspan="2">' + rule + '</td></tr>' +
-    '<tr><td colspan="2"><font color="#8E8E93" size="2">节点 · ' + nodeLabel + '</font></td></tr>' +
-    '</table></div>';
+  return '<div style="font-family: -apple-system; font-size: large; line-height: 1.45">' + lines.join('<br/>') + '</div>';
 }
 
 ;(async () => {
@@ -200,7 +199,7 @@ function renderReport(nodeLabel) {
   }
 
   $done({
-    title: '流媒体解锁检测',
+    title: '媒体检测',
     htmlMessage: renderReport(nodeLabel)
   });
 })();
