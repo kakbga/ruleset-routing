@@ -279,11 +279,7 @@ let content = ''
     }
     $.log($.toStr(result))
     if (isInteraction()) {
-      const html = `<div style="font-family: -apple-system; font-size: large">${`\n${content}${
-        proxy_policy ? `\n\n${proxy_policy.replace(/^(.*?:\s*)(.*)$/, '$1<span style="color: #467fcf">$2</span>')}` : ''
-      }`
-        .replace(/^(.*?):/gim, '<span style="font-weight: bold">$1</span>:')
-        .replace(/\n/g, '<br/>')}</div>`
+      const html = renderNetworkCard(content, proxy_policy)
       // $.log(html)
       $.done({
         title: '网络信息 𝕏',
@@ -1264,6 +1260,166 @@ function getIpapiisPrivacy(body) {
 
   return privacy.length > 0 ? `隐私安全:\n${privacy.join('\n')}` : ''
 }
+// —— 网络信息卡片 ——
+function escapeHTML(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+// 把 content 里的「键: 值」文本拆成分段
+function parseNetworkInfo(text) {
+  const meta = {}
+  const sections = []
+  let cur = null
+
+  String(text || '')
+    .split('\n')
+    .map(i => i.trim())
+    .filter(i => i)
+    .forEach(line => {
+      // IPv6 本身带冒号, 先单独识别, 否则会被当成「键: 值」
+      if (isIPv6(line)) {
+        if (!cur) {
+          cur = { title: '', rows: [], privacy: null }
+          sections.push(cur)
+        }
+        cur.rows.push({ k: 'IPv6', v: line })
+        return
+      }
+      const matched = line.match(/^([^:：]{1,14})\s*[:：]\s*(.*)$/)
+      if (!matched) return
+      const key = matched[1].trim()
+      const val = matched[2].trim()
+      const bare = key.replace(/[¹²³]+$/, '')
+
+      if (bare === 'SSID') {
+        meta.ssid = val
+        return
+      }
+      if (bare === 'LAN') {
+        meta.lan = val
+        return
+      }
+      if (bare === '策略') {
+        meta.policy = val
+        return
+      }
+      if (bare === '执行时间') {
+        meta.time = val
+        return
+      }
+      if (bare === 'IP') {
+        cur = { title: '国内', rows: [{ k: key, v: val }], privacy: null }
+        sections.push(cur)
+        return
+      }
+      if (bare === '入口') {
+        cur = { title: '入口', rows: [{ k: 'IP', v: val }], privacy: null }
+        sections.push(cur)
+        return
+      }
+      if (bare === '落地 IP') {
+        cur = { title: '落地', rows: [{ k: 'IP', v: val }], privacy: null }
+        sections.push(cur)
+        return
+      }
+      if (bare === '隐私安全') {
+        cur = { title: '隐私', rows: [], privacy: [] }
+        sections.push(cur)
+        return
+      }
+
+      if (!cur) {
+        cur = { title: '', rows: [], privacy: null }
+        sections.push(cur)
+      }
+      if (cur.privacy) {
+        cur.privacy.push({ k: key.replace(/^is_/, ''), v: val })
+      } else if (val) {
+        cur.rows.push({ k: key, v: val })
+      }
+    })
+
+  return { meta, sections }
+}
+function renderNetworkCard(content, nodeRaw) {
+  const GRAY = '#8E8E93'
+  const ACCENT = '#4C9AFF'
+  const { meta, sections } = parseNetworkInfo(content)
+
+  let nodeLabel = ''
+  if (nodeRaw) {
+    const matched = nodeRaw.match(/^([^:：]+)[:：]\s*(.+)$/)
+    nodeLabel = matched ? matched[2] : nodeRaw
+  }
+
+  if (!nodeLabel && !meta.policy && !sections.length) {
+    return `<div style="font-family: -apple-system; font-size: 15px">${escapeHTML(content).replace(/\n/g, '<br/>')}</div>`
+  }
+
+  const row = (label, value) =>
+    `<tr><td width="58" style="padding: 2px 0; vertical-align: top; white-space: nowrap"><font color="${GRAY}" style="font-size: 13px">${escapeHTML(
+      label
+    )}</font></td><td style="padding: 2px 0; vertical-align: top; font-size: 15px; word-break: break-all">${escapeHTML(
+      value
+    )}</td></tr>`
+
+  const rows = []
+
+  if (nodeLabel) {
+    rows.push(
+      `<tr><td colspan="2" style="padding: 0 0 10px"><b style="color: ${ACCENT}; font-size: 17px">${escapeHTML(
+        nodeLabel
+      )}</b></td></tr>`
+    )
+  }
+  rows.push(`<tr><td colspan="2"><div style="border-top: 1px solid #3A3A3C; margin: 0 0 10px"></div></td></tr>`)
+
+  if (meta.policy) {
+    rows.push(row('策略', meta.policy))
+  }
+
+  let first = true
+  sections.forEach(sec => {
+    if (sec.title) {
+      rows.push(
+        `<tr><td colspan="2" style="padding: ${first ? 0 : 12}px 0 6px"><font color="#9A9AA0" style="font-size: 11px; font-weight: 600; letter-spacing: 1px">${escapeHTML(
+          sec.title
+        )}</font></td></tr>`
+      )
+      first = false
+    }
+    sec.rows.forEach(item => {
+      rows.push(row(item.k, item.v))
+    })
+    if (sec.privacy && sec.privacy.length) {
+      const chips = sec.privacy
+        .map(item => {
+          const hit = /✓|✔|true|yes|是/i.test(item.v)
+          const color = hit ? '#E5484D' : '#5AC36D'
+          return `<span style="display: inline-block; margin: 0 12px 4px 0"><font color="${GRAY}" style="font-size: 13px">${escapeHTML(
+            item.k
+          )}</font> <font color="${color}" style="font-size: 13px">${escapeHTML(item.v)}</font></span>`
+        })
+        .join('')
+      rows.push(`<tr><td colspan="2" style="padding: 0">${chips}</td></tr>`)
+    }
+  })
+
+  const foot = [meta.ssid && `SSID ${meta.ssid}`, meta.lan && `LAN ${meta.lan}`, meta.time]
+    .filter(i => i)
+    .join(' · ')
+
+  if (foot) {
+    rows.push(`<tr><td colspan="2"><div style="border-top: 1px solid #3A3A3C; margin: 12px 0 8px"></div></td></tr>`)
+    rows.push(
+      `<tr><td colspan="2"><font color="${GRAY}" style="font-size: 12px">${escapeHTML(foot)}</font></td></tr>`
+    )
+  }
+
+  return `<div style="font-family: -apple-system; font-size: 15px; line-height: 1.45"><table width="100%" cellspacing="0" cellpadding="0">${rows.join(
+    ''
+  )}</table></div>`
+}
+// —— 网络信息卡片结束 ——
 function simplifyAddr(addr) {
   if (!addr) return ''
   return addr
