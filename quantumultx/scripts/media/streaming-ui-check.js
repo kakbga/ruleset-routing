@@ -152,7 +152,7 @@ function renderReport(nodeLabel) {
     let it = data[k];
     let color = STATE_COLOR[it.state] || STATE_COLOR.error;
     let icon = STATE_ICON[it.state] || STATE_ICON.error;
-    let detail = it.detail || '';
+    let detail = it.detail || (it.state === 'ok' ? '支持' : '');
     return '<tr>' +
       '<td style="padding:4px 0">' + icon + '&nbsp;<b>' + SERVICE_NAME[k] + '</b></td>' +
       '<td align="right" style="padding:4px 0;color:' + color + '">' + detail + '</td>' +
@@ -200,7 +200,7 @@ function renderReport(nodeLabel) {
   }
 
   $done({
-    title: '流媒体解锁检测',
+    title: '媒体检测',
     htmlMessage: renderReport(nodeLabel)
   });
 })();
