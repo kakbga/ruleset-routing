@@ -251,7 +251,7 @@ function testDisneyPlus() {
 
       let match = body.match(/"location":"([A-Za-z]{2})"/) || body.match(/"akamaiRegion":"([A-Za-z]{2})"/);
       if (match) {
-        setState('Disney', 'ok', flagOf(match[1]));
+        setState('Disney', 'ok', '支持');
       } else if (/unavailable/i.test(body)) {
         setState('Disney', 'no', '未支持');
       } else {
@@ -283,7 +283,7 @@ function testNf(filmId) {
       console.log('nf:' + response.statusCode);
 
       if (response.statusCode === 404) {
-        setState('Netflix', 'warn', '仅自制剧集');
+        setState('Netflix', 'warn', '支持（自制剧集）');
       } else if (response.statusCode === 403) {
         setState('Netflix', 'no', '未支持');
       } else if (response.statusCode === 200) {
@@ -297,11 +297,11 @@ function testNf(filmId) {
             region = seg.slice(0, 2).toUpperCase();
           }
         }
-        setState('Netflix', 'ok', (flagOf(region) + ' 完整').trim());
+        setState('Netflix', 'ok', '完整支持');
       } else if (response.statusCode === 301 || response.statusCode === 302) {
         let location = headerOf(response.headers, 'Location');
         let m = location && location.match(/\/([a-z]{2})\//i);
-        setState('Netflix', 'ok', m ? (flagOf(m[1]) + ' 完整').trim() : '完整');
+        setState('Netflix', 'ok', '完整支持');
       } else {
         setState('Netflix', 'error', '检测异常');
       }
@@ -342,7 +342,7 @@ function testYTB() {
         } else if (body.indexOf('www.google.cn') !== -1) {
           region = 'CN';
         }
-        setState('YouTube', 'ok', flagOf(region));
+        setState('YouTube', 'ok', '支持');
       }
       resolve();
     }, reason => {
@@ -385,13 +385,13 @@ function testDazn() {
       if (response.statusCode === 200) {
         let ret = /"GeolocatedCountry":"(.*?)"/.exec(body);
         if (ret) {
-          setState('Dazn', 'ok', flagOf(ret[1]));
+          setState('Dazn', 'ok', '支持');
         } else {
           setState('Dazn', 'no', '未支持');
         }
       } else if (response.statusCode === 403 && /security policy/i.test(body)) {
         // 接口正常，但机房/代理 IP 被 DAZN 风控拦了
-        setState('Dazn', 'warn', '风控拦截');
+        setState('Dazn', 'no', '未支持');
       } else {
         setState('Dazn', 'error', '检测异常');
       }
@@ -420,7 +420,7 @@ function testParam() {
     $task.fetch(option).then(response => {
       console.log('Paramountᐩ:' + response.statusCode);
       if (response.statusCode === 200) {
-        setState('Paramount', 'ok', '');
+        setState('Paramount', 'ok', '支持');
       } else if (response.statusCode === 301 || response.statusCode === 302 || response.statusCode === 307 || response.statusCode === 308) {
         setState('Paramount', 'no', '未支持');
       } else if (response.statusCode === 403) {
@@ -486,7 +486,7 @@ function testDiscovery() {
           let info = JSON.parse(response2.body);
           let territory = String(info["data"]["attributes"]["currentLocationTerritory"] || '').toUpperCase();
           if (territory === 'US') {
-            setState('Discovery', 'ok', flagOf(territory));
+            setState('Discovery', 'ok', '支持');
           } else if (territory) {
             setState('Discovery', 'no', '未支持');
           } else {
@@ -558,7 +558,7 @@ function testChatGPT() {
         if (!region) {
           setState('ChatGPT', 'error', '检测异常');
         } else if (support_countryCodes.indexOf(region) !== -1) {
-          setState('ChatGPT', 'ok', flagOf(region));
+          setState('ChatGPT', 'ok', '支持');
         } else {
           setState('ChatGPT', 'no', '未支持');
         }
