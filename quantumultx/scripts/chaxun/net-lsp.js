@@ -1269,6 +1269,10 @@ function tidyText(str) {
   const text = String(str)
   return typeof text.normalize === 'function' ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text
 }
+// 开了 MASK 后 IPv6 会变成 2408:8207:*:*:*:*:*:* 这种, IPV6_REGEX 匹配不到, 兜一下
+function looksLikeIPv6(line) {
+  return /^[0-9a-fA-F:*]+$/.test(line) && (line.match(/:/g) || []).length >= 2
+}
 // 把 content 里的「键: 值」文本拆成分段
 function parseNetworkInfo(text) {
   const meta = {}
@@ -1281,7 +1285,7 @@ function parseNetworkInfo(text) {
     .filter(i => i)
     .forEach(line => {
       // IPv6 本身带冒号, 先单独识别, 否则会被当成「键: 值」
-      if (isIPv6(line)) {
+      if (isIPv6(line) || looksLikeIPv6(line)) {
         if (!cur) {
           cur = { title: '', rows: [], privacy: null }
           sections.push(cur)
