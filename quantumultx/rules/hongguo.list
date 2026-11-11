@@ -14,7 +14,7 @@ HOST-KEYWORD, ad-union-sdk, REJECT
 HOST-KEYWORD, be-pack, REJECT
 HOST-SUFFIX, zijieapi.com, REJECT
 HOST-KEYWORD, tnc.snssdk, REJECT
-#新添加项目: https://github.com/abclq/home-dns-adblock 
+#新添项目: https://github.com/abclq/home-dns-adblock 
 HOST-SUFFIX, abtest3-misc-hl.zijieapi.com, REJECT
 HOST-SUFFIX, activity-ag.awemeughun.com, REJECT
 HOST-SUFFIX, ad.toutiao.com, REJECT
