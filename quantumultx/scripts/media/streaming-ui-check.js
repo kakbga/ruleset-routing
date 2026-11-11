@@ -16,6 +16,7 @@ For Quantumult-X 598+ ONLY!!
             - Netflix 兼容 X-Originating-URL 缺失，修复 region 解析
             - Discovery 简化 Cookie，只保留 st
             - 修复 finally 中 output 未定义、$done 可能被多次调用等问题
+            - 结果改为结构化数据 + 统一渲染，排版重做（图标/对齐/分隔线）
 
 [task_local]
 
@@ -38,21 +39,8 @@ const BASE_URL_Discovery = 'https://us1-prod-direct.discoveryplus.com/users/me';
 const BASE_URL_GPT = 'https://chatgpt.com/';
 const Region_URL_GPT = 'https://chatgpt.com/cdn-cgi/trace';
 
-const arrow = ' ➟ ';
-
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36';
 const UA_WIN = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
-
-// 即将登陆
-const STATUS_COMING = 2;
-// 支持解锁
-const STATUS_AVAILABLE = 1;
-// 不支持解锁
-const STATUS_NOT_AVAILABLE = 0;
-// 检测超时
-const STATUS_TIMEOUT = -1;
-// 检测异常
-const STATUS_ERROR = -2;
 
 var opts = {
   policy: $environment.params
@@ -109,23 +97,37 @@ const flags = new Map([
   ['ZA', '🇿🇦'], ['ZM', '🇿🇲'], ['ZW', '🇿🇼']
 ]);
 
-// 取旗子，取不到就返回空串，避免出现 "⟦undefined⟧"
+// 取旗子，取不到返回空串
 function flagOf(region) {
   if (!region) return '';
   var f = flags.get(String(region).toUpperCase());
-  return f ? '⟦' + f + '⟧' : '';
+  return f || '';
 }
 
-let result = {
-  "title": '    📺  流媒体服务查询',
-  "YouTube": '<b>YouTube: </b>检测失败，请重试 ❗️',
-  "Netflix": '<b>Netflix: </b>检测失败，请重试 ❗️',
-  "Dazn": '<b>Dazn: </b>检测失败，请重试 ❗️',
-  "Disney": '<b>Disneyᐩ: </b>检测失败，请重试 ❗️',
-  "Paramount": '<b>Paramountᐩ: </b>检测失败，请重试 ❗️',
-  "Discovery": '<b>Discoveryᐩ: </b>检测失败，请重试 ❗️',
-  "ChatGPT": '<b>ChatGPT: </b>检测失败，请重试 ❗️'
+/* ---------------- 结果与排版 ---------------- */
+
+// 展示名与顺序
+const SERVICES = ['YouTube', 'Netflix', 'Disney', 'Dazn', 'Paramount', 'Discovery', 'ChatGPT'];
+const SERVICE_NAME = {
+  YouTube: 'YouTube Premium',
+  Netflix: 'Netflix',
+  Disney: 'Disney+',
+  Dazn: 'DAZN',
+  Paramount: 'Paramount+',
+  Discovery: 'Discovery+',
+  ChatGPT: 'ChatGPT'
 };
+
+// ok / no / warn / timeout / error
+const STATE_ICON = { ok: '✅', no: '⛔️', warn: '⚠️', timeout: '🚦', error: '❗️' };
+const STATE_COLOR = { ok: '#2EBD59', no: '#E5484D', warn: '#E8A33D', timeout: '#E8A33D', error: '#8E8E93' };
+
+let data = {};
+SERVICES.forEach(k => { data[k] = { state: 'error', detail: '' }; });
+
+function setState(key, state, detail) {
+  data[key] = { state: state, detail: detail || '' };
+}
 
 // 有些响应头大小写不固定，这里统一取
 function headerOf(headers, name) {
@@ -145,8 +147,31 @@ function timeout(delay = 5000) {
   });
 }
 
+function renderReport(nodeLabel) {
+  let rows = SERVICES.map(k => {
+    let it = data[k];
+    let color = STATE_COLOR[it.state] || STATE_COLOR.error;
+    let icon = STATE_ICON[it.state] || STATE_ICON.error;
+    let detail = it.detail || '';
+    return '<tr>' +
+      '<td style="padding:4px 0">' + icon + '&nbsp;<b>' + SERVICE_NAME[k] + '</b></td>' +
+      '<td align="right" style="padding:4px 0;color:' + color + '">' + detail + '</td>' +
+      '</tr>';
+  }).join('');
+
+  let rule = '<div style="border-top:1px solid #3A3A3C;margin:10px 0"></div>';
+
+  return '<div style="font-family:-apple-system;font-size:16px;line-height:1.35">' +
+    '<table width="100%" cellspacing="0" cellpadding="0" style="width:100%">' +
+    '<tr><td colspan="2">' + rule + '</td></tr>' +
+    rows +
+    '<tr><td colspan="2">' + rule + '</td></tr>' +
+    '<tr><td colspan="2"><font color="#8E8E93" size="2">节点 · ' + nodeLabel + '</font></td></tr>' +
+    '</table></div>';
+}
+
 ;(async () => {
-  // 全部并发跑，任何一个挂掉都不影响其它项；等齐了再出结果，避免 $done 时还是“检测失败”的初始文案
+  // 全部并发跑，任何一个挂掉都不影响其它项；等齐了再出结果
   await Promise.all([
     testYTB().catch(e => console.log('YouTube error: ' + e)),
     testDazn().catch(e => console.log('Dazn error: ' + e)),
@@ -167,40 +192,28 @@ function timeout(delay = 5000) {
     if (resp && resp.ret) {
       let raw = resp.ret[$environment.params];
       if (raw) {
-        nodeLabel = JSON.stringify(raw).replace(/["\[\]]/g, '').replace(/,/g, ' ➟ ');
+        nodeLabel = JSON.stringify(raw).replace(/["\[\]]/g, '').replace(/,/g, ' · ');
       }
     }
   } catch (e) {
     console.log('get_policy_state error: ' + e);
   }
 
-  let rows = [
-    result["YouTube"],
-    result["Netflix"],
-    result["Disney"],
-    result["Dazn"],
-    result["Paramount"],
-    result["Discovery"],
-    result["ChatGPT"]
-  ];
-
-  let content = '------------------------------' + '</br>' + rows.join('</br></br>');
-  content = content + '</br>------------------------------</br>' +
-    '<font color=#CD5C5C><b>节点</b> ➟ ' + nodeLabel + '</font>';
-  content = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`;
-
-  $done({ "title": result["title"], "htmlMessage": content });
+  $done({
+    title: '流媒体解锁检测',
+    htmlMessage: renderReport(nodeLabel)
+  });
 })();
 
 /* ------------------------- Disney+ ------------------------- */
 
-// 支持地区：首页 200，HTML 里带 "location":"XX" / "akamaiRegion":"XX"
+// 支持地区：首页 200，HTML 里带 "location":"XX"
 // 不支持地区：302 到 /welcome/unavailable（旧版靠 CNBL 标记，现已删除）
 function testDisneyPlus() {
   return new Promise((resolve) => {
     let option = {
       url: BASE_URL_DISNEY,
-      opts: opts1,               // 不跟随跳转，才能看到 unavailable
+      opts: opts1,
       timeout: 7000,
       headers: {
         'Accept-Language': 'en',
@@ -210,46 +223,44 @@ function testDisneyPlus() {
 
     $task.fetch(option).then(response => {
       let status = response.statusCode;
-      let data = response.body || '';
+      let body = response.body || '';
       let location = headerOf(response.headers, 'Location');
       console.log('DisneyPlus: status=' + status + ', location=' + location);
 
       if (status === 301 || status === 302 || status === 303 || status === 307 || status === 308) {
         if (/unavailable/i.test(location)) {
-          result["Disney"] = '<b>Disneyᐩ:</b> 未支持 🚫';
+          setState('Disney', 'no', '未支持');
         } else {
-          result["Disney"] = '<b>Disneyᐩ:</b> 检测异常 ❗️';
+          setState('Disney', 'error', '检测异常');
         }
         resolve();
         return;
       }
 
       if (status === 403) {
-        result["Disney"] = '<b>Disneyᐩ:</b> 未支持 🚫';
+        setState('Disney', 'no', '未支持');
         resolve();
         return;
       }
 
       if (status !== 200) {
-        result["Disney"] = '<b>Disneyᐩ:</b> 检测失败 ❗️';
+        setState('Disney', 'error', '检测异常');
         resolve();
         return;
       }
 
-      let match = data.match(/"location":"([A-Za-z]{2})"/) || data.match(/"akamaiRegion":"([A-Za-z]{2})"/);
+      let match = body.match(/"location":"([A-Za-z]{2})"/) || body.match(/"akamaiRegion":"([A-Za-z]{2})"/);
       if (match) {
-        let region = match[1].toUpperCase();
-        result["Disney"] = '<b>Disneyᐩ:</b> 支持' + arrow + flagOf(region) + ' 🎉';
-        console.log('DisneyPlus region: ' + region);
-      } else if (/unavailable/i.test(data)) {
-        result["Disney"] = '<b>Disneyᐩ:</b> 未支持 🚫';
+        setState('Disney', 'ok', flagOf(match[1]));
+      } else if (/unavailable/i.test(body)) {
+        setState('Disney', 'no', '未支持');
       } else {
-        result["Disney"] = '<b>Disneyᐩ:</b> 检测异常 ❗️';
+        setState('Disney', 'error', '检测异常');
       }
       resolve();
     }, reason => {
       console.log('DisneyPlus timeout: ' + reason);
-      result["Disney"] = '<b>Disneyᐩ:</b> 检测超时 🚦';
+      setState('Disney', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -272,9 +283,9 @@ function testNf(filmId) {
       console.log('nf:' + response.statusCode);
 
       if (response.statusCode === 404) {
-        result["Netflix"] = '<b>Netflix: </b>支持自制剧集 ⚠️';
+        setState('Netflix', 'warn', '仅自制剧集');
       } else if (response.statusCode === 403) {
-        result["Netflix"] = '<b>Netflix: </b>未支持 🚫';
+        setState('Netflix', 'no', '未支持');
       } else if (response.statusCode === 200) {
         // 200 时会带 X-Originating-URL，形如 http://www.netflix.com/sg/title/81280792
         let url = headerOf(response.headers, 'X-Originating-URL') || headerOf(response.headers, 'Location');
@@ -286,29 +297,18 @@ function testNf(filmId) {
             region = seg.slice(0, 2).toUpperCase();
           }
         }
-        console.log('nf region: ' + region);
-        if (region) {
-          result["Netflix"] = '<b>Netflix: </b>完整支持' + arrow + flagOf(region) + ' 🎉';
-        } else {
-          // 拿不到地区头就别报错，至少说明能解锁
-          result["Netflix"] = '<b>Netflix: </b>完整支持 🎉';
-        }
+        setState('Netflix', 'ok', (flagOf(region) + ' 完整').trim());
       } else if (response.statusCode === 301 || response.statusCode === 302) {
-        // 关掉重定向时可能直接拿到跳转
         let location = headerOf(response.headers, 'Location');
         let m = location && location.match(/\/([a-z]{2})\//i);
-        if (m) {
-          result["Netflix"] = '<b>Netflix: </b>完整支持' + arrow + flagOf(m[1]) + ' 🎉';
-        } else {
-          result["Netflix"] = '<b>Netflix: </b>完整支持 🎉';
-        }
+        setState('Netflix', 'ok', m ? (flagOf(m[1]) + ' 完整').trim() : '完整');
       } else {
-        result["Netflix"] = '<b>Netflix: </b>检测失败 ❗️';
+        setState('Netflix', 'error', '检测异常');
       }
       resolve();
     }, reason => {
       console.log('nf timeout: ' + reason);
-      result["Netflix"] = '<b>Netflix: </b>检测超时 🚦';
+      setState('Netflix', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -328,31 +328,26 @@ function testYTB() {
     };
 
     $task.fetch(option).then(response => {
-      let data = response.body || '';
+      let body = response.body || '';
       console.log('ytb:' + response.statusCode);
       if (response.statusCode !== 200) {
-        result["YouTube"] = '<b>YouTube Premium: </b>检测失败 ❗️';
-      } else if (data.indexOf('Premium is not available in your country') !== -1) {
-        result["YouTube"] = '<b>YouTube Premium: </b>未支持 🚫';
+        setState('YouTube', 'error', '检测异常');
+      } else if (body.indexOf('Premium is not available in your country') !== -1) {
+        setState('YouTube', 'no', '未支持');
       } else {
         let region = '';
-        let ret = /"GL":"(.*?)"/.exec(data) || /"countryCode":"(.*?)"/.exec(data);
+        let ret = /"GL":"(.*?)"/.exec(body) || /"countryCode":"(.*?)"/.exec(body);
         if (ret) {
           region = ret[1].toUpperCase();
-        } else if (data.indexOf('www.google.cn') !== -1) {
+        } else if (body.indexOf('www.google.cn') !== -1) {
           region = 'CN';
         }
-        if (region) {
-          result["YouTube"] = '<b>YouTube Premium: </b>支持' + arrow + flagOf(region) + ' 🎉';
-        } else {
-          result["YouTube"] = '<b>YouTube Premium: </b>支持 🎉';
-        }
-        console.log('ytb region: ' + region);
+        setState('YouTube', 'ok', flagOf(region));
       }
       resolve();
     }, reason => {
       console.log('ytb timeout: ' + reason);
-      result["YouTube"] = '<b>YouTube Premium: </b>检测超时 🚦';
+      setState('YouTube', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -384,28 +379,26 @@ function testDazn() {
     };
 
     $task.fetch(option).then(response => {
-      let data = response.body || '';
+      let body = response.body || '';
       console.log('Dazn:' + response.statusCode);
 
       if (response.statusCode === 200) {
-        let ret = /"GeolocatedCountry":"(.*?)"/.exec(data);
+        let ret = /"GeolocatedCountry":"(.*?)"/.exec(body);
         if (ret) {
-          let region = ret[1].toUpperCase();
-          result["Dazn"] = '<b>Dazn: </b>支持' + arrow + flagOf(region) + ' 🎉';
-          console.log('Dazn region: ' + region);
+          setState('Dazn', 'ok', flagOf(ret[1]));
         } else {
-          result["Dazn"] = '<b>Dazn: </b>未支持 🚫';
+          setState('Dazn', 'no', '未支持');
         }
-      } else if (response.statusCode === 403 && /security policy/i.test(data)) {
+      } else if (response.statusCode === 403 && /security policy/i.test(body)) {
         // 接口正常，但机房/代理 IP 被 DAZN 风控拦了
-        result["Dazn"] = '<b>Dazn: </b>节点被拦截（非流媒体地区判定）🚫';
+        setState('Dazn', 'warn', '风控拦截');
       } else {
-        result["Dazn"] = '<b>Dazn: </b>检测失败 ❗️';
+        setState('Dazn', 'error', '检测异常');
       }
       resolve();
     }, reason => {
       console.log('Dazn timeout: ' + reason);
-      result["Dazn"] = '<b>Dazn: </b>检测超时 🚦';
+      setState('Dazn', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -426,22 +419,19 @@ function testParam() {
 
     $task.fetch(option).then(response => {
       console.log('Paramountᐩ:' + response.statusCode);
-      let location = headerOf(response.headers, 'Location');
       if (response.statusCode === 200) {
-        result["Paramount"] = '<b>Paramountᐩ: </b>支持 🎉';
+        setState('Paramount', 'ok', '');
       } else if (response.statusCode === 301 || response.statusCode === 302 || response.statusCode === 307 || response.statusCode === 308) {
-        result["Paramount"] = '<b>Paramountᐩ: </b>未支持 🚫';
-        console.log('Paramountᐩ location: ' + location);
+        setState('Paramount', 'no', '未支持');
       } else if (response.statusCode === 403) {
-        result["Paramount"] = '<b>Paramountᐩ: </b>未支持 🚫';
+        setState('Paramount', 'no', '未支持');
       } else {
-        result["Paramount"] = '<b>Paramountᐩ: </b>检测失败 ❗️';
+        setState('Paramount', 'error', '检测异常');
       }
-      console.log('Paramountᐩ: ' + result["Paramount"]);
       resolve();
     }, reason => {
       console.log('Paramount timeout: ' + reason);
-      result["Paramount"] = '<b>Paramountᐩ: </b>检测超时 🚦';
+      setState('Paramount', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -464,7 +454,7 @@ function testDiscovery() {
     $task.fetch(option).then(response => {
       console.log('GetToken:' + response.statusCode);
       if (response.statusCode !== 200) {
-        result["Discovery"] = '<b>Discoveryᐩ: </b>检测失败 ❗️';
+        setState('Discovery', 'error', '检测异常');
         resolve();
         return;
       }
@@ -474,7 +464,7 @@ function testDiscovery() {
         token = JSON.parse(response.body)["data"]["attributes"]["token"];
       } catch (e) {
         console.log('GetToken parse error: ' + e);
-        result["Discovery"] = '<b>Discoveryᐩ: </b>检测失败 ❗️';
+        setState('Discovery', 'error', '检测异常');
         resolve();
         return;
       }
@@ -493,29 +483,28 @@ function testDiscovery() {
       $task.fetch(option1).then(response2 => {
         console.log('Discovery+ Check:' + response2.statusCode);
         try {
-          let data = JSON.parse(response2.body);
-          let territory = data["data"]["attributes"]["currentLocationTerritory"] || '';
-          territory = String(territory).toUpperCase();
+          let info = JSON.parse(response2.body);
+          let territory = String(info["data"]["attributes"]["currentLocationTerritory"] || '').toUpperCase();
           if (territory === 'US') {
-            result["Discovery"] = '<b>Discoveryᐩ: </b>支持' + arrow + flagOf(territory) + ' 🎉';
+            setState('Discovery', 'ok', flagOf(territory));
           } else if (territory) {
-            result["Discovery"] = '<b>Discoveryᐩ: </b>未支持 🚫';
+            setState('Discovery', 'no', '未支持');
           } else {
-            result["Discovery"] = '<b>Discoveryᐩ: </b>检测异常 ❗️';
+            setState('Discovery', 'error', '检测异常');
           }
         } catch (e) {
           console.log('Discovery parse error: ' + e);
-          result["Discovery"] = '<b>Discoveryᐩ: </b>检测失败 ❗️';
+          setState('Discovery', 'error', '检测异常');
         }
         resolve();
       }, reason => {
         console.log('Discovery check error: ' + reason);
-        result["Discovery"] = '<b>Discoveryᐩ: </b>检测超时 🚦';
+        setState('Discovery', 'timeout', '检测超时');
         resolve();
       });
     }, reason => {
       console.log('GetToken error: ' + reason);
-      result["Discovery"] = '<b>Discoveryᐩ: </b>检测超时 🚦';
+      setState('Discovery', 'timeout', '检测超时');
       resolve();
     });
   });
@@ -541,12 +530,12 @@ function testChatGPT() {
       console.log('ChatGPT Main Test: ' + response.statusCode);
 
       if (response.statusCode === 403 || response.statusCode === 451) {
-        result["ChatGPT"] = '<b>ChatGPT: </b>未支持 🚫';
+        setState('ChatGPT', 'no', '未支持');
         resolve();
         return;
       }
       if (response.statusCode !== 200) {
-        result["ChatGPT"] = '<b>ChatGPT: </b>检测失败 ❗️';
+        setState('ChatGPT', 'error', '检测异常');
         resolve();
         return;
       }
@@ -567,21 +556,21 @@ function testChatGPT() {
         console.log('ChatGPT Region: ' + region);
 
         if (!region) {
-          result["ChatGPT"] = '<b>ChatGPT: </b>检测异常 ❗️';
+          setState('ChatGPT', 'error', '检测异常');
         } else if (support_countryCodes.indexOf(region) !== -1) {
-          result["ChatGPT"] = '<b>ChatGPT: </b>支持' + arrow + flagOf(region) + ' 🎉';
+          setState('ChatGPT', 'ok', flagOf(region));
         } else {
-          result["ChatGPT"] = '<b>ChatGPT: </b>未支持 🚫';
+          setState('ChatGPT', 'no', '未支持');
         }
         resolve();
       }, reason => {
         console.log('ChatGPT region error: ' + reason);
-        result["ChatGPT"] = '<b>ChatGPT: </b>检测超时 🚦';
+        setState('ChatGPT', 'timeout', '检测超时');
         resolve();
       });
     }, reason => {
       console.log('ChatGPT error: ' + reason);
-      result["ChatGPT"] = '<b>ChatGPT: </b>检测超时 🚦';
+      setState('ChatGPT', 'timeout', '检测超时');
       resolve();
     });
   });
