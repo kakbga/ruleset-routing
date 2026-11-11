@@ -1373,13 +1373,13 @@ function renderNetworkCard(content, nodeRaw) {
     lines.push(rule)
   }
   if (meta.policy) {
-    lines.push(`<font color="${GRAY}">策略</font>&nbsp;&nbsp;${escapeHTML(meta.policy)}`)
+    lines.push(`<font color="${GRAY}">策略</font>：${escapeHTML(meta.policy)}`)
   }
 
   sections.forEach(sec => {
     if (sec.title) lines.push(`<b style="color: ${GRAY}">${escapeHTML(sec.title)}</b>`)
     sec.rows.forEach(item => {
-      lines.push(`<font color="${GRAY}">${escapeHTML(item.k)}</font>&nbsp;&nbsp;${escapeHTML(item.v)}`)
+      lines.push(`<font color="${GRAY}">${escapeHTML(item.k)}</font>：${escapeHTML(item.v)}`)
     })
     if (sec.privacy && sec.privacy.length) {
       lines.push(
@@ -1387,7 +1387,7 @@ function renderNetworkCard(content, nodeRaw) {
           .map(item => {
             const hit = /✓|✔|true|yes|是/i.test(item.v)
             const color = hit ? '#E5484D' : '#5AC36D'
-            return `<font color="${GRAY}">${escapeHTML(item.k)}</font> <font color="${color}">${escapeHTML(item.v)}</font>`
+            return `<font color="${GRAY}">${escapeHTML(item.k)}</font>：<font color="${color}">${escapeHTML(item.v)}</font>`
           })
           .join('&nbsp;&nbsp;&nbsp;')
       )
@@ -1395,8 +1395,8 @@ function renderNetworkCard(content, nodeRaw) {
   })
 
   const foot = [
-    meta.ssid && `SSID ${meta.ssid}`,
-    meta.lan && `LAN ${meta.lan}`,
+    meta.ssid && `SSID：${meta.ssid}`,
+    meta.lan && `LAN：${meta.lan}`,
     meta.time,
   ].filter(i => i)
 
