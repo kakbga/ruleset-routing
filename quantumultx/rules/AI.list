@@ -53,12 +53,8 @@ DOMAIN-SUFFIX,zed.dev
 # > AI Studio
 DOMAIN-SUFFIX,generativeai.google
 DOMAIN-SUFFIX,makersuite.google.com
-DOMAIN,aistudio.google.com
 DOMAIN,alkalicore-pa.clients6.google.com
 DOMAIN,alkalimakersuite-pa.clients6.google.com
-# > Antigravity
-DOMAIN,antigravity.google
-DOMAIN,antigravity-unleash.goog
 # > DeepMind
 DOMAIN-SUFFIX,deepmind.com
 DOMAIN-SUFFIX,deepmind.google
@@ -67,8 +63,6 @@ DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
 DOMAIN-SUFFIX,geller-pa.googleapis.com
 DOMAIN-SUFFIX,generativelanguage.googleapis.com
 DOMAIN,ai.google.dev
-DOMAIN,bard.google.com
-DOMAIN,gemini.google.com
 # > NotebookLM
 DOMAIN-KEYWORD,notebooklm.google
 # > Search Labs
@@ -101,15 +95,11 @@ DOMAIN-SUFFIX,ciciai.com
 DOMAIN-SUFFIX,dola.com
 DOMAIN-SUFFIX,byteoversea.com
 # OpenAI / ChatGPT / Sora
-DOMAIN-SUFFIX,chatgpt.livekit.cloud
 DOMAIN-SUFFIX,chatgpt.site
-DOMAIN-SUFFIX,host.livekit.cloud
 DOMAIN-SUFFIX,oaistatsig.com
 DOMAIN-SUFFIX,openai.com.cdn.cloudflare.net
 DOMAIN-SUFFIX,openai.org
-DOMAIN-SUFFIX,turn.livekit.cloud
 DOMAIN,openai.qualtrics.com
-DOMAIN,openaiapi-site.azureedge.net
 DOMAIN,openaiassets.blob.core.windows.net
 DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
 DOMAIN,openaicom.imgix.net
@@ -126,7 +116,6 @@ DOMAIN-SUFFIX,claudeacademy.com
 DOMAIN-SUFFIX,claudepages.dev
 DOMAIN-SUFFIX,claudestudio.com
 DOMAIN-SUFFIX,crixet.com
-DOMAIN,servd-anthropic-website.b-cdn.net
 # Google AI / Gemini / NotebookLM
 DOMAIN-SUFFIX,aicode.googleapis.com
 DOMAIN-SUFFIX,aida.googleapis.com
@@ -153,9 +142,6 @@ DOMAIN-SUFFIX,opal.google
 DOMAIN-SUFFIX,opal.google.com
 DOMAIN-SUFFIX,robinfrontend-pa.googleapis.com
 DOMAIN-SUFFIX,stitch.withgoogle.com
-DOMAIN,ai.google.dev
-DOMAIN,alkalicore-pa.clients6.google.com
-DOMAIN,alkalimakersuite-pa.clients6.google.com
 DOMAIN,antigravity-pa.googleapis.com
 DOMAIN,antigravity.googleapis.com
 DOMAIN,appsgenaiserver-pa.clients.google.com
@@ -182,7 +168,6 @@ DOMAIN-SUFFIX,grok.x.com
 DOMAIN-SUFFIX,grokipedia.com
 # Perplexity
 DOMAIN-SUFFIX,perplexity.com
-DOMAIN,pplx-res.cloudinary.com
 # 其他 AI 服务
 DOMAIN,ppl-ai-file-upload.s3.amazonaws.com
 DOMAIN-SUFFIX,ai.studio
@@ -193,5 +178,4 @@ DOMAIN-SUFFIX,manus.im
 DOMAIN-SUFFIX,metademolab.com
 DOMAIN-SUFFIX,skywork.ai
 DOMAIN,browser-intake-datadoghq.com
-DOMAIN,o33249.ingest.sentry.io
 DOMAIN,o33249.ingest.us.sentry.io
