@@ -6,13 +6,13 @@ function main(config) {
   config['geo-auto-update'] = !useCustomGeosite
   config['geo-update-interval'] = 48
   config['geox-url'] = {
-    geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat',
-    geoip: 'https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip-only-cn-private.dat'
+    geosite: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/data/geosite.dat',
+    geoip: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/data/geoip-only-cn-private.dat'
   }
   config.dns = {
     enable: true, ipv6: false, 'cache-algorithm': 'arc',
     'enhanced-mode': 'fake-ip', 'fake-ip-range': '198.18.0.1/16',
-    'fake-ip-filter': ['localhost', '+.lan', '+.local', '+.localdomain', '+.home.arpa', '+.msftconnecttest.com', '+.msftncsi.com'],
+    'fake-ip-filter': ['localhost', '+.lan', '+.local', '+.localdomain', '+.home.arpa', '+.localhost.ptlogin2.qq.com', '+.msftconnecttest.com', '+.msftncsi.com'],
     'default-nameserver': ['223.5.5.5', '223.6.6.6'],
     'nameserver': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
     'proxy-server-nameserver': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
