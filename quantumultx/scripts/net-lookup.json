@@ -2,7 +2,7 @@
     "name":"网络查询检测",
     "description":"by Q",
     "task":[
-        "event-interaction https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/scripts/media/streaming-ui-check.js, tag=Netflix 查询, img-url=https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260315.png, enabled=true",
-        "event-interaction https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/scripts/chaxun/net-lsp.js, tag=Disneyᐩ 查询, img-url=https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260316.png, enabled=true"
+        "event-interaction https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/scripts/media/streaming-ui-check.js, tag=媒体解锁查询, img-url=https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260315.png, enabled=true",
+        "event-interaction https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/scripts/chaxun/net-lsp.js, tag=网络信息检测, img-url=https://raw.githubusercontent.com/kakbga/ruleset-routing/main/quantumultx/image/20260316.png, enabled=true"
     ]
 }
