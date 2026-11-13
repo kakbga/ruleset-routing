@@ -107,14 +107,12 @@ function main(config) {
   config.rules = [
     'GEOIP,private,DIRECT,no-resolve',
     'RULE-SET,applications,DIRECT',
-    'GEOSITE,PRIVATE,DIRECT',
-    'GEOSITE,CATEGORY-ADS-ALL,REJECT',
-    'DOMAIN-SUFFIX,javdb.com,🇯🇵 日本节点',
-    'DOMAIN-SUFFIX,dmm.com,🇯🇵 日本节点',
+    'GEOSITE,private,DIRECT',
+    'GEOSITE,category-ads-all,REJECT',
     'RULE-SET,AI,🤖 智能助理',
     'RULE-SET,SteamCN,DIRECT',
-    'GEOSITE,APPLE-CN,DIRECT',
-    'GEOSITE,CN,DIRECT',
+    'GEOSITE,apple-cn,DIRECT',
+    'GEOSITE,cn,DIRECT',
     'GEOIP,cn,DIRECT,no-resolve',
     'MATCH,🌐 PROXY'
   ]
