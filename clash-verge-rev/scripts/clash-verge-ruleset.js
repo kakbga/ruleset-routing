@@ -112,7 +112,6 @@ function main(config) {
     'DOMAIN-SUFFIX,javdb.com,🇯🇵 日本节点',
     'DOMAIN-SUFFIX,dmm.com,🇯🇵 日本节点',
     'RULE-SET,AI,🤖 智能助理',
-    'GEOSITE,GFW,🌐 PROXY',
     'RULE-SET,SteamCN,DIRECT',
     'GEOSITE,APPLE-CN,DIRECT',
     'GEOSITE,CN,DIRECT',
