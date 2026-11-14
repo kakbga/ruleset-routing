@@ -1,185 +1,147 @@
-# QuantumultX AI合集 制作 by Q 2026/11/12 更新
-# 规则条数: 147
-# system = iOS,iPadOS
-
-# Apple Intelligence
-DOMAIN-SUFFIX,smoot.apple.com
-DOMAIN,apple-relay.apple.com
-DOMAIN,apple-relay.cloudflare.com
-DOMAIN,apple-relay.fastly-edge.com
-DOMAIN-SUFFIX,gateway.icloud.com
-DOMAIN,cp4.cloudflare.com
-DOMAIN,guzzoni.apple.com
-DOMAIN,gspe1-ssl.ls.apple.com
-DOMAIN-SUFFIX,apps.mzstatic.com
-# Anthropic
-# > Claude
-DOMAIN-SUFFIX,anthropic.com
-DOMAIN-SUFFIX,claude.ai
-DOMAIN-SUFFIX,claude.com
-DOMAIN-SUFFIX,clau.de
-DOMAIN-SUFFIX,claudemcpclient.com
-DOMAIN-SUFFIX,claudemcpcontent.com
-DOMAIN-SUFFIX,claudeusercontent.com
-DOMAIN,anthropic.auth0.com
-DOMAIN,anthropic.com.cdn.cloudflare.net
-DOMAIN,anthropic-com.ghost.io
-DOMAIN,servd-anthropic-website.b-cdn.net
-DOMAIN,cdn.usefathom.com
-# OpenAI
-# > ChatGPT
-DOMAIN-SUFFIX,chat.com
-DOMAIN-SUFFIX,chatgpt.com
-DOMAIN-SUFFIX,livekit.cloud
-DOMAIN-SUFFIX,oaistatic.com
-DOMAIN-SUFFIX,oaiusercontent.com
-DOMAIN-SUFFIX,openai.com
-DOMAIN-SUFFIX,sora.com
-DOMAIN,api.statsig.com
-DOMAIN,api-iam.intercom.io
-DOMAIN,o33249.ingest.sentry.io
-DOMAIN,openaiapi-site.azureedge.net
-DOMAIN-KEYWORD,openaiapi
-DOMAIN-KEYWORD,openaicom
-# OpenRouter
-DOMAIN-SUFFIX,openrouter.ai
-# Cloudflare
-# > AI Gateway
-DOMAIN,gateway.ai.cloudflare.com
-# Cursor
-DOMAIN-SUFFIX,cursor-cdn.com
-DOMAIN-SUFFIX,cursor.com
-DOMAIN-SUFFIX,cursor.sh
-DOMAIN-SUFFIX,cursorapi.com
-# Zed
-DOMAIN-SUFFIX,zed.dev
-# Google
-# > AI Studio
-DOMAIN-SUFFIX,generativeai.google
-DOMAIN-SUFFIX,makersuite.google.com
-DOMAIN,alkalicore-pa.clients6.google.com
-DOMAIN,alkalimakersuite-pa.clients6.google.com
-# > DeepMind
-DOMAIN-SUFFIX,deepmind.com
-DOMAIN-SUFFIX,deepmind.google
-# > Gemini
-DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
-DOMAIN-SUFFIX,geller-pa.googleapis.com
-DOMAIN-SUFFIX,generativelanguage.googleapis.com
-DOMAIN,ai.google.dev
-# > NotebookLM
-DOMAIN-KEYWORD,notebooklm.google
-# > Search Labs
-DOMAIN-KEYWORD,labs.google
-# Groq
-DOMAIN-SUFFIX,groq.com
-# JetBrains AI
-DOMAIN-SUFFIX,grazie.ai
-# Meta
-DOMAIN-SUFFIX,meta.ai
-DOMAIN,imagine.meta.com
-# Microsoft
-# > Copilot
-DOMAIN,copilot.microsoft.com
-DOMAIN,sydney.bing.com
-DOMAIN,www.bing.com
-# > GitHub Copilot
-DOMAIN-SUFFIX,githubcopilot.com
-# Perplexity
-DOMAIN-SUFFIX,perplexity.ai
-DOMAIN-SUFFIX,pplx.ai
-DOMAIN,pplx-res.cloudinary.com
-# xAI
-DOMAIN-SUFFIX,grok.com
-DOMAIN-SUFFIX,x.ai
-# Doubao
-# > Doubao Dola
-DOMAIN-SUFFIX,cici.com
-DOMAIN-SUFFIX,ciciai.com
-DOMAIN-SUFFIX,dola.com
-DOMAIN-SUFFIX,byteoversea.com
-# OpenAI / ChatGPT / Sora
-DOMAIN-SUFFIX,chatgpt.site
-DOMAIN-SUFFIX,oaistatsig.com
-DOMAIN-SUFFIX,openai.com.cdn.cloudflare.net
-DOMAIN-SUFFIX,openai.org
-DOMAIN,openai.qualtrics.com
-DOMAIN,openaiassets.blob.core.windows.net
-DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
-DOMAIN,openaicom.imgix.net
-DOMAIN,openaicomproductionae4b.blob.core.windows.net
-DOMAIN,production-openaicom-storage.azureedge.net
-# Anthropic / Claude
-DOMAIN-SUFFIX,anthropic.team
-DOMAIN-SUFFIX,chatbotclaude.com
-DOMAIN-SUFFIX,claude.app
-DOMAIN-SUFFIX,claude.dev
-DOMAIN-SUFFIX,claude.new
-DOMAIN-SUFFIX,claude.site
-DOMAIN-SUFFIX,claudeacademy.com
-DOMAIN-SUFFIX,claudepages.dev
-DOMAIN-SUFFIX,claudestudio.com
-DOMAIN-SUFFIX,crixet.com
-# Google AI / Gemini / NotebookLM
-DOMAIN-SUFFIX,aicode.googleapis.com
-DOMAIN-SUFFIX,aida.googleapis.com
-DOMAIN-SUFFIX,aisandbox-pa.googleapis.com
-DOMAIN-SUFFIX,aistudio.google.com
-DOMAIN-SUFFIX,antigravity-unleash.goog
-DOMAIN-SUFFIX,antigravity.google
-DOMAIN-SUFFIX,bard.google.com
-DOMAIN-SUFFIX,flow.google
-DOMAIN-SUFFIX,flow.google.com
-DOMAIN-SUFFIX,gemini.google
-DOMAIN-SUFFIX,gemini.google.com
-DOMAIN-SUFFIX,gemini.gstatic.com
-DOMAIN-SUFFIX,jules.google
-DOMAIN-SUFFIX,jules.google.com
-DOMAIN-SUFFIX,labs.google
-DOMAIN-SUFFIX,labs.google.com
-DOMAIN-SUFFIX,labstailwind.pa.googleapis.com
-DOMAIN-SUFFIX,notebook.google
-DOMAIN-SUFFIX,notebook.google.com
-DOMAIN-SUFFIX,notebooklm.google
-DOMAIN-SUFFIX,notebooklm.google.com
-DOMAIN-SUFFIX,opal.google
-DOMAIN-SUFFIX,opal.google.com
-DOMAIN-SUFFIX,robinfrontend-pa.googleapis.com
-DOMAIN-SUFFIX,stitch.withgoogle.com
-DOMAIN,antigravity-pa.googleapis.com
-DOMAIN,antigravity.googleapis.com
-DOMAIN,appsgenaiserver-pa.clients.google.com
-DOMAIN,appsgenaiserver-pa.clients6.google.com
-DOMAIN,appsgenaiserver-pa.googleapis.com
-DOMAIN,cloudaicompanion.googleapis.com
-DOMAIN,cloudcode-pa.googleapis.com
-DOMAIN,daily-cloudcode-pa.googleapis.com
-DOMAIN,geminiweb-pa.clients.google.com
-DOMAIN,geminiweb-pa.clients6.google.com
-DOMAIN,notebooklm-pa.googleapis.com
-DOMAIN,notebooklm.googleapis.com
-DOMAIN,webchannel-alkalimakersuite-pa.clients6.google.com
-# Cursor
-DOMAIN-SUFFIX,cursorvm.com
-# GitHub Copilot / Microsoft Copilot
-DOMAIN,copilotprodattachments.blob.core.windows.net
-DOMAIN,copilot-proxy.githubusercontent.com
-DOMAIN,copilot-telemetry-service.githubusercontent.com
-DOMAIN,copilot-telemetry.githubusercontent.com
-DOMAIN,copilot-workspace.githubnext.com
-# xAI / Grok
-DOMAIN-SUFFIX,grok.x.com
-DOMAIN-SUFFIX,grokipedia.com
-# Perplexity
-DOMAIN-SUFFIX,perplexity.com
-# 其他 AI 服务
-DOMAIN,ppl-ai-file-upload.s3.amazonaws.com
-DOMAIN-SUFFIX,ai.studio
-DOMAIN-SUFFIX,ant.dev
-DOMAIN-SUFFIX,antspace.dev
-DOMAIN-SUFFIX,genspark.ai
-DOMAIN-SUFFIX,manus.im
-DOMAIN-SUFFIX,metademolab.com
-DOMAIN-SUFFIX,skywork.ai
-DOMAIN,browser-intake-datadoghq.com
-DOMAIN,o33249.ingest.us.sentry.io
+host-suffix,smoot.apple.com
+host,apple-relay.apple.com
+host,apple-relay.cloudflare.com
+host,apple-relay.fastly-edge.com
+host-suffix,gateway.icloud.com
+host,cp4.cloudflare.com
+host,guzzoni.apple.com
+host,gspe1-ssl.ls.apple.com
+host-suffix,apps.mzstatic.com
+host-suffix,anthropic.com
+host-suffix,claude.ai
+host-suffix,claude.com
+host-suffix,clau.de
+host-suffix,claudemcpclient.com
+host-suffix,claudemcpcontent.com
+host-suffix,claudeusercontent.com
+host,anthropic.auth0.com
+host,anthropic.com.cdn.cloudflare.net
+host,anthropic-com.ghost.io
+host,servd-anthropic-website.b-cdn.net
+host,cdn.usefathom.com
+host-suffix,chat.com
+host-suffix,chatgpt.com
+host-suffix,livekit.cloud
+host-suffix,oaistatic.com
+host-suffix,oaiusercontent.com
+host-suffix,openai.com
+host-suffix,sora.com
+host,api.statsig.com
+host,api-iam.intercom.io
+host,o33249.ingest.sentry.io
+host,openaiapi-site.azureedge.net
+host-keyword,openaiapi
+host-keyword,openaicom
+host-suffix,openrouter.ai
+host,gateway.ai.cloudflare.com
+host-suffix,cursor-cdn.com
+host-suffix,cursor.com
+host-suffix,cursor.sh
+host-suffix,cursorapi.com
+host-suffix,zed.dev
+host-suffix,generativeai.google
+host-suffix,makersuite.google.com
+host,alkalicore-pa.clients6.google.com
+host,alkalimakersuite-pa.clients6.google.com
+host-suffix,deepmind.com
+host-suffix,deepmind.google
+host-suffix,proactivebackend-pa.googleapis.com
+host-suffix,geller-pa.googleapis.com
+host-suffix,generativelanguage.googleapis.com
+host,ai.google.dev
+host-keyword,notebooklm.google
+host-keyword,labs.google
+host-suffix,groq.com
+host-suffix,grazie.ai
+host-suffix,meta.ai
+host,imagine.meta.com
+host,copilot.microsoft.com
+host,sydney.bing.com
+host,www.bing.com
+host-suffix,githubcopilot.com
+host-suffix,perplexity.ai
+host-suffix,pplx.ai
+host,pplx-res.cloudinary.com
+host-suffix,grok.com
+host-suffix,x.ai
+host-suffix,cici.com
+host-suffix,ciciai.com
+host-suffix,dola.com
+host-suffix,byteoversea.com
+host-suffix,chatgpt.site
+host-suffix,oaistatsig.com
+host-suffix,openai.com.cdn.cloudflare.net
+host-suffix,openai.org
+host,openai.qualtrics.com
+host,openaiassets.blob.core.windows.net
+host,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
+host,openaicom.imgix.net
+host,openaicomproductionae4b.blob.core.windows.net
+host,production-openaicom-storage.azureedge.net
+host-suffix,anthropic.team
+host-suffix,chatbotclaude.com
+host-suffix,claude.app
+host-suffix,claude.dev
+host-suffix,claude.new
+host-suffix,claude.site
+host-suffix,claudeacademy.com
+host-suffix,claudepages.dev
+host-suffix,claudestudio.com
+host-suffix,crixet.com
+host-suffix,aicode.googleapis.com
+host-suffix,aida.googleapis.com
+host-suffix,aisandbox-pa.googleapis.com
+host-suffix,aistudio.google.com
+host-suffix,antigravity-unleash.goog
+host-suffix,antigravity.google
+host-suffix,bard.google.com
+host-suffix,flow.google
+host-suffix,flow.google.com
+host-suffix,gemini.google
+host-suffix,gemini.google.com
+host-suffix,gemini.gstatic.com
+host-suffix,jules.google
+host-suffix,jules.google.com
+host-suffix,labs.google
+host-suffix,labs.google.com
+host-suffix,labstailwind.pa.googleapis.com
+host-suffix,notebook.google
+host-suffix,notebook.google.com
+host-suffix,notebooklm.google
+host-suffix,notebooklm.google.com
+host-suffix,opal.google
+host-suffix,opal.google.com
+host-suffix,robinfrontend-pa.googleapis.com
+host-suffix,stitch.withgoogle.com
+host,antigravity-pa.googleapis.com
+host,antigravity.googleapis.com
+host,appsgenaiserver-pa.clients.google.com
+host,appsgenaiserver-pa.clients6.google.com
+host,appsgenaiserver-pa.googleapis.com
+host,cloudaicompanion.googleapis.com
+host,cloudcode-pa.googleapis.com
+host,daily-cloudcode-pa.googleapis.com
+host,geminiweb-pa.clients.google.com
+host,geminiweb-pa.clients6.google.com
+host,notebooklm-pa.googleapis.com
+host,notebooklm.googleapis.com
+host,webchannel-alkalimakersuite-pa.clients6.google.com
+host-suffix,cursorvm.com
+host,copilotprodattachments.blob.core.windows.net
+host,copilot-proxy.githubusercontent.com
+host,copilot-telemetry-service.githubusercontent.com
+host,copilot-telemetry.githubusercontent.com
+host,copilot-workspace.githubnext.com
+host-suffix,grok.x.com
+host-suffix,grokipedia.com
+host-suffix,perplexity.com
+host,ppl-ai-file-upload.s3.amazonaws.com
+host-suffix,ai.studio
+host-suffix,ant.dev
+host-suffix,antspace.dev
+host-suffix,genspark.ai
+host-suffix,manus.im
+host-suffix,metademolab.com
+host-suffix,skywork.ai
+host,browser-intake-datadoghq.com
+host,o33249.ingest.us.sentry.io
