@@ -2,7 +2,7 @@
 # 规则条数: 147
 # system = iOS,iPadOS
 
-#  Apple Intelligence
+# Apple Intelligence
 DOMAIN-SUFFIX,smoot.apple.com
 DOMAIN,apple-relay.apple.com
 DOMAIN,apple-relay.cloudflare.com
