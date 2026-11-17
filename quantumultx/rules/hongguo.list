@@ -1,6 +1,6 @@
 # QuantumultX 广告拦截 制作 by Q 2026/11/12 更新
 # desc = 本列表针对国内App抖音、番茄小说、红果、小红书、高德等的广告、埋点、统计域名
-# 规则条数: 94
+# 规则条数: 82
 # system = iOS,iPadOS
 
 host-suffix,hongguoapp.com
