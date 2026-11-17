@@ -31,7 +31,7 @@ function main(config) {
     nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
     'proxy-server-nameserver': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
     'nameserver-policy': {
-      'geosite:CN': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
+      'geosite:cn': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
       'geosite:private': ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query'],
       'geosite:category-ads-all': ['rcode://success'],
     },
