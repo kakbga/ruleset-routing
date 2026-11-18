@@ -6,8 +6,8 @@ function main(config) {
   config['geo-auto-update'] = !useCustomGeosite
   config['geo-update-interval'] = 48
   config['geox-url'] = {
-    geosite: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/data/geosite.dat',
-    geoip: 'https://raw.githubusercontent.com/kakbga/ruleset-routing/main/clash-verge-rev/data/geoip-only-cn-private.dat'
+    geosite: 'https://github.com/kakbga/ruleset-routing/raw/main/clash-verge-rev/data/geosite.dat',
+    geoip: 'https://github.com/kakbga/ruleset-routing/raw/main/clash-verge-rev/data/geoip-only-cn-private.dat'
   }
   config.dns = {
     enable: true, ipv6: false, 'cache-algorithm': 'arc',
