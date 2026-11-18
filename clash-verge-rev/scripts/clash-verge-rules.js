@@ -5,7 +5,7 @@ function main(config) {
   config['geo-update-interval'] = 48
   config['geox-url'] = {
     geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat',
-    geoip: 'https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip-only-cn-private.dat'
+    geoip: 'https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip.dat'
   }
   config.dns = {
     enable: true, ipv6: false, 'cache-algorithm': 'arc',
